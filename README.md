@@ -1,6 +1,6 @@
 # GDN Steering Human Audit
 
-Argilla application for blind human validation of the frozen steering Judge. Derived from [ru-promptriever-human-audit](https://github.com/Vdmrl/ru-promptriever-human-audit), retaining its Docker stack and Git history. This is a separate repository because GitHub does not fork a repository into the same owner account.
+Argilla application for blind human validation of the frozen steering Judge.
 
 ## Start annotation
 
