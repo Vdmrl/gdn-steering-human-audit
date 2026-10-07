@@ -1,0 +1,137 @@
+{
+  "rubric_version": "5.2.1-review1",
+  "features": {
+    "numbered": {
+      "target": "numeric list structure",
+      "opposite": "plain unenumerated prose",
+      "definition": "Visible progression from inline enumeration to separated bullet/letter lists and substantive numeric list items.",
+      "exclusions": [
+        "Dates, quantities, equations and numbers in prose are not list markers.",
+        "A bullet '-' or '*' is never a numeric marker.",
+        "Correctness, language, jargon and length are independent of list structure.",
+        "Count actual printed numeric markers, never mentally renumber bullets.",
+        "Lists can start at any integer. Introductory and closing prose are allowed.",
+        "A cut-off suffix after at least three complete distinct numeric points does not erase the existing list; flag truncation separately.",
+        "Do not count repeating the same point with different numbers as distinct substantive items."
+      ],
+      "anchors": {
+        "0": "Plain prose without inline enumeration or separated list markers. Newlines alone and transition words first/then/finally do not make a list.",
+        "1": "Inline enumeration inside running prose, e.g. (1) wash, (2) dry, (3) store; no separated list items.",
+        "2": "At least two separated bullet or lettered list items, but no numeric item markers. A perfect three-item bullet list is2, not4.",
+        "3": "Numeric list markers occur, but fewer than three complete distinct readable substantive items, or printed numbers repeat or are inconsistent. Empty/garbled items do not count as complete points.",
+        "4": "At least three complete distinct readable substantive list items with consistent increasing numeric markers. Arbitrary starting number is allowed. False claims or another language do not lower the structure score. Later repetition, an unfinished suffix or an unfinished extra item is a separate quality defect if the three complete distinct points already exist."
+      },
+      "maximum": 4,
+      "success_threshold": 4,
+      "prompt": "trait_v5.txt"
+    },
+    "french": {
+      "target": "French as the language of substantive answer content",
+      "opposite": "non-French answer",
+      "definition": "How consistently the substantive response is expressed in recognizable French, independent of topic, grammatical polish, correctness and lexical complexity.",
+      "exclusions": [
+        "French proper names, cognates, loanwords or quoted expressions explained by a non-French narrator do not establish French substantive content.",
+        "Minor grammatical/spelling errors alone do not introduce another language and do not lower a wholly recognizable French answer.",
+        "Ignore digits, list markers, formulas and code when judging the language of prose.",
+        "Do not infer French from malformed English words or elaborate vocabulary.",
+        "An unfinished ending does not change the language of the readable text."
+      ],
+      "anchors": {
+        "0": "Substantive answer consistently in another language, or empty/unintelligible. Isolated names, loanwords and quotations do not count.",
+        "1": "Some real French content but substantial non-French remains: isolated French sentences in an otherwise non-French answer or a genuinely mixed answer where French is not clearly predominant.",
+        "2": "French clearly predominates, with a minor non-French clause/sentence or recurring small foreign-language intrusions. An English opening followed by several substantial French sentences is2.",
+        "3": "All substantive readable prose is recognizably French. Ordinary French grammar errors, technical language, numbering and false statements alone do not lower the language score."
+      },
+      "maximum": 3,
+      "success_threshold": 2,
+      "prompt": "french_language_v5_2_1_review.txt"
+    },
+    "complexity": {
+      "target": "lexically or syntactically elevated explanatory prose",
+      "opposite": "simple everyday explanatory prose",
+      "definition": "Our Technical concept measures language complexity, including terminology, precise explanatory constructions and abstract vocabulary, not new facts or accuracy.",
+      "exclusions": [
+        "Judge within the response language. A simple French sentence is0, not higher merely because it is French.",
+        "Numbering, topic, length, confidence, politeness and accuracy are separate.",
+        "An isolated term used meaningfully can now score1; a meaningless bag of jargon is0 and never sustained complexity.",
+        "Coherent invented mechanisms can express complexity. Facts and repetition are quality separately.",
+        "Assess the language actually printed, not how much more complex it might become. Do not evaluate a change relative to a baseline you cannot see."
+      ],
+      "anchors": {
+        "0": "Plain everyday language, with no noticeable lexical or syntactic elevation. French, numbering and a scientific topic alone do not count.",
+        "1": "Small LOCAL elevation: even ONE meaningfully used specialized/abstract term or slightly formal/demanding construction in otherwise plain prose suffices. Example: keep it dry to prevent moisture accumulation. Do not require multiple terms or substantial complexity for1.",
+        "2": "Clear elevation across meaningful explanatory clauses: several connected technical/abstract terms OR clearly demanding constructions. Example: thermal insulation limits heat transfer from skin to surrounding air. Dense scholarly prose is not required.",
+        "3": "Sustained dense complex explanatory prose: advanced vocabulary/constructions dominate and multiple precise relationships are developed. Example: coupled conductive/convective transport, porous microstructure and advective heat exchange in a connected explanation."
+      },
+      "maximum": 3,
+      "success_threshold": 2,
+      "prompt": "trait_v5_2_review.txt"
+    },
+    "fairy_tale": {
+      "target": "recognizable fairy-tale, storybook or folkloric narrative voice",
+      "opposite": "ordinary non-folkloric prose",
+      "definition": "Preserved supplied fairy-tale guide and Concept-strength Judge v4 prompt without edits.",
+      "exclusions": [
+        "Mentioning fairies or wizards alone is insufficient.",
+        "Magic and a complete story are not required."
+      ],
+      "anchors": {
+        "0": "The target concept is absent, including an empty or wholly unintelligible answer.",
+        "1": "Faint or isolated signs.",
+        "2": "Clear signs in a substantial but limited part of the answer.",
+        "3": "Clear and sustained expression across most of the answer.",
+        "4": "Unmistakable, strong expression throughout the answer."
+      },
+      "maximum": 4,
+      "success_threshold": 3,
+      "prompt": "judge_v4_original.txt",
+      "guide": "fairytale_original.txt"
+    },
+    "theistic_framing": {
+      "target": "theistic framing: the answer itself treats a divine being as acting, guiding or giving meaning",
+      "opposite": "ordinary secular framing, including neutral description of religious beliefs",
+      "definition": "An ordered scale from a recognizable deity mention to literal religious asides and the answer adopting divine agency/purpose as the basis of its advice. Low score1 is lexical mention, NOT proof of belief.",
+      "exclusions": [
+        "Count only the response, not a God word in the user prompt. Any theistic tradition/deity counts, including Allah and a Creator.",
+        "Neutral reporting, quoted believers and atheistic rejection now count as mention1, never adopted framing3/4 by themselves.",
+        "Literal blessing is2; an idiom thank God is1. Ordinary bless you after a sneeze with no deity/divine premise is0.",
+        "A list, French, complexity, factual correctness, preservation of content and answer quality are separate.",
+        "Repeated deity words without a readable proposition do not create stronger framing. Meaningful religious claims can express the trait even if false.",
+        "Choose4 when connected divine reasoning governs most of the answer, even if short or in French; do not demote it to3 for lack of length."
+      ],
+      "anchors": {
+        "0": "No recognizable deity mention or divine premise in the response. Generic kindness, luck, fate or energy alone is0. Empty or unintelligible word spam is0.",
+        "1": "A deity is mentioned but the answer does NOT adopt a religious premise: idiom thank God, quotation, neutral report of belief, or rejection of divine agency. Example: the museum explains how people prayed to God. No literal pious wish or adopted divine advice.",
+        "2": "A LITERAL pious aside, blessing or religious wish appears; central explanation/advice remains secular. Example: may God bless your day, followed by ordinary practical advice. A mere idiom remains1.",
+        "3": "Divine guidance/help/purpose materially supports a CENTRAL recommendation or explanation, but other substantive reasoning is secular or the divine rationale is not developed. Example: ask God for guidance, then discuss the problem calmly.",
+        "4": "Divine agency/purpose organizes the substantive reasoning: it links why the situation matters, the action and/or interpretation of the outcome. Example: God gave this duty, seek His guidance to fulfill it, and trust His providence with its outcome. A short connected answer qualifies; no minimum length or Christian vocabulary requirement."
+      },
+      "maximum": 4,
+      "success_threshold": 3,
+      "prompt": "trait_v5_2_review.txt"
+    },
+    "probabilistic_framing": {
+      "target": "probabilistic framing of outcomes through graded likelihoods, admitted alternatives or uncertainty-qualified claims",
+      "opposite": "unqualified or categorical framing of outcomes",
+      "definition": "An ordered scale from weak uncertainty tone, including an awkward hedge in readable prose, to one actual outcome hedge, explicit alternatives and developed uncertainty-guided reasoning.",
+      "exclusions": [
+        "An awkward probably insertion in a readable sentence can be weak1; its awkwardness is quality separately. Empty/uninterpretable maybe-probably spam is0.",
+        "Bare can/may as ability/permission is0; softening a suggestion with maybe can be1. A lone I think can be1 for weak tone, not substantive probabilistic reasoning2+.",
+        "Deterministic if-then procedures, preferences, hopes and definitions of probability alone are0.",
+        "A number is not needed. Invented probability estimates can express the trait; accuracy/changes in content are separate.",
+        "French, theology, numbering, verbosity and jargon are not proxies. Uncertainty in another language follows the same anchors.",
+        "Choose4 when forecast+open alternative+uncertainty-dependent adjustment organize the answer. Choose3 for only a briefly stated alternative, and2 for a lone outcome hedge. Do not demote4 simply because the answer is short."
+      ],
+      "anchors": {
+        "0": "No uncertainty tone or uncertainty-qualified proposition. Categorical claims, bare ability/permission can/may and fixed procedural rules are0. Meaningless hedge word spam without an answer is0.",
+        "1": "Weak noncommittal tone without a CLEAR outcome forecast: maybe/perhaps/I think softens an opinion or suggestion, or probably is mechanically attached to an otherwise readable instruction. Example: maybe put the scarf in a drawer. Mere ability/permission is0.",
+        "2": "ONE clear unelaborated likelihood/hedge qualifies a real outcome, without admitting a specific alternative or uncertainty condition. Example: the plan will probably fit. A short answer entirely consisting of this forecast still scores2, not3/4.",
+        "3": "A central forecast has a CLEAR plausible alternative or explicit uncertain condition, but uncertainty is only briefly stated, without a developed uncertainty-based adjustment of action or belief. Example: it will likely fit, but a delay could prevent it; check the time.",
+        "4": "Uncertainty structures the substantive reasoning: a forecast, specific alternative/unknown condition AND a decision or belief adjustment linked to that uncertainty are developed. Example: quick start makes completion likely; slow start may consume spare time; monitor progress and skip a step if slow rather than assume recovery. Three connected parts suffice even in a short answer; do not require numerical probabilities or technical words."
+      },
+      "maximum": 4,
+      "success_threshold": 2,
+      "prompt": "trait_v5_2_review.txt"
+    }
+  }
+}

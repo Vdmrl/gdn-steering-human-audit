@@ -11,7 +11,7 @@ x-common-variables: &common-variables
 
 services:
   argilla:
-    image: argilla/argilla-server:latest
+    image: argilla/argilla-server@sha256:3476700fbb30f95dcdbe769074e566a5dd814dd68f9922db691acf01eeced734
     restart: unless-stopped
     ports:
       - "6900:6900"
@@ -27,7 +27,7 @@ services:
       - redis
 
   worker:
-    image: argilla/argilla-server:latest
+    image: argilla/argilla-server@sha256:3476700fbb30f95dcdbe769074e566a5dd814dd68f9922db691acf01eeced734
     restart: unless-stopped
     environment:
       <<: *common-variables
@@ -87,9 +87,11 @@ services:
       ARGILLA_API_URL: http://argilla:6900
       ARGILLA_API_KEY: ${ARGILLA_API_KEY:-argilla.apikey}
       ARGILLA_WORKSPACE: ${ARGILLA_WORKSPACE:-default}
-      ARGILLA_DATASET: ${ARGILLA_DATASET:-ru-promptriever-human-audit}
-      ARGILLA_DARIA_PASSWORD: ${ARGILLA_DARIA_PASSWORD:-password}
-      ARGILLA_VLADIMIR_PASSWORD: ${ARGILLA_VLADIMIR_PASSWORD:-password}
+      ARGILLA_DATASET: ${ARGILLA_DATASET:-gdn-steering-human-audit}
+      ARGILLA_VOVA_PASSWORD: ${ARGILLA_VOVA_PASSWORD:-password}
+      ARGILLA_STEPA_PASSWORD: ${ARGILLA_STEPA_PASSWORD:-password}
+      ARGILLA_SLAVA_PASSWORD: ${ARGILLA_SLAVA_PASSWORD:-password}
+      ARGILLA_PETYA_PASSWORD: ${ARGILLA_PETYA_PASSWORD:-password}
     volumes:
       - ./scripts:/workspace/scripts:ro
       - ./data:/workspace/data

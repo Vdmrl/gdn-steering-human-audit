@@ -1,60 +1,138 @@
 {
-  "schema_version": 3,
-  "seed": 20260710,
-  "quality_requested": {
-    "train": 40,
-    "synthetic_test": 24
+  "study_version": "1.0",
+  "rubric_version": "5.2.1-review1",
+  "shuffle_seed": 20261008,
+  "items": 128,
+  "human_ratings_expected": 256,
+  "assignments": {
+    "vova": {
+      "name": "Вова",
+      "group": "A",
+      "items": 64
+    },
+    "stepa": {
+      "name": "Стёпа",
+      "group": "A",
+      "items": 64
+    },
+    "slava": {
+      "name": "Слава",
+      "group": "B",
+      "items": 64
+    },
+    "petya": {
+      "name": "Петя",
+      "group": "B",
+      "items": 64
+    }
   },
-  "quality_selected": {
-    "train": 40,
-    "synthetic_test": 24
-  },
-  "selected_negative_count": {
-    "3": 45,
-    "2": 13,
-    "1": 5,
-    "0": 1
-  },
-  "dataset_hash": "75f681e7a94652af6c1532bf56ff2813f78c43485df91a64229242bf6337a564",
-  "source": "data_preprocessing/data/output_final_dataset/data",
-  "source_files": [
+  "public_sha256": "ea8c0ce3bf8fc0fd819d3eea4430732a81083ff85552d0ef46dc4290bcd64201",
+  "rubric_sha256": "061920594e7b97545d2b7480db8da3d33f64afaa38d372dc11858a0f38c23ee1",
+  "private_manifest_sha256": "4a17f1d22f365a8060d89b01b61fe83a04ed1b0d27530468447cc0d8bd3456d9",
+  "coverage": [
     {
-      "path": "D:\\HSE\\Course 4\\Diplom\\ru-promptriever\\pythonProject\\data_preprocessing\\data\\output_final_dataset\\data\\train-00000-of-00008.parquet",
-      "size": 1665235916
+      "feature": "numbered",
+      "language": "en",
+      "real_representative": 8,
+      "diagnostic_scores": {
+        "2": 1,
+        "0": 4,
+        "1": 1,
+        "3": 1,
+        "4": 1
+      },
+      "diagnostic_synthetic": 3
     },
     {
-      "path": "D:\\HSE\\Course 4\\Diplom\\ru-promptriever\\pythonProject\\data_preprocessing\\data\\output_final_dataset\\data\\train-00001-of-00008.parquet",
-      "size": 1683323001
+      "feature": "probabilistic_framing",
+      "language": "en",
+      "real_representative": 8,
+      "diagnostic_scores": {
+        "1": 1,
+        "2": 1,
+        "4": 1,
+        "0": 4,
+        "3": 1
+      },
+      "diagnostic_synthetic": 3
     },
     {
-      "path": "D:\\HSE\\Course 4\\Diplom\\ru-promptriever\\pythonProject\\data_preprocessing\\data\\output_final_dataset\\data\\train-00002-of-00008.parquet",
-      "size": 1717812467
+      "feature": "complexity",
+      "language": "en",
+      "real_representative": 8,
+      "diagnostic_scores": {
+        "0": 5,
+        "3": 1,
+        "1": 1,
+        "2": 1
+      },
+      "diagnostic_synthetic": 3
     },
     {
-      "path": "D:\\HSE\\Course 4\\Diplom\\ru-promptriever\\pythonProject\\data_preprocessing\\data\\output_final_dataset\\data\\train-00003-of-00008.parquet",
-      "size": 1657872098
+      "feature": "theistic_framing",
+      "language": "en",
+      "real_representative": 8,
+      "diagnostic_scores": {
+        "4": 1,
+        "3": 1,
+        "0": 4,
+        "2": 1,
+        "1": 1
+      },
+      "diagnostic_synthetic": 2
     },
     {
-      "path": "D:\\HSE\\Course 4\\Diplom\\ru-promptriever\\pythonProject\\data_preprocessing\\data\\output_final_dataset\\data\\train-00004-of-00008.parquet",
-      "size": 1657115712
+      "feature": "numbered",
+      "language": "ru",
+      "real_representative": 8,
+      "diagnostic_scores": {
+        "1": 1,
+        "0": 4,
+        "3": 1,
+        "4": 1,
+        "2": 1
+      },
+      "diagnostic_synthetic": 4
     },
     {
-      "path": "D:\\HSE\\Course 4\\Diplom\\ru-promptriever\\pythonProject\\data_preprocessing\\data\\output_final_dataset\\data\\train-00005-of-00008.parquet",
-      "size": 1683890825
+      "feature": "probabilistic_framing",
+      "language": "ru",
+      "real_representative": 8,
+      "diagnostic_scores": {
+        "3": 1,
+        "0": 4,
+        "4": 1,
+        "1": 1,
+        "2": 1
+      },
+      "diagnostic_synthetic": 3
     },
     {
-      "path": "D:\\HSE\\Course 4\\Diplom\\ru-promptriever\\pythonProject\\data_preprocessing\\data\\output_final_dataset\\data\\train-00006-of-00008.parquet",
-      "size": 1643423905
+      "feature": "complexity",
+      "language": "ru",
+      "real_representative": 8,
+      "diagnostic_scores": {
+        "0": 2,
+        "1": 4,
+        "3": 1,
+        "2": 1
+      },
+      "diagnostic_synthetic": 1
     },
     {
-      "path": "D:\\HSE\\Course 4\\Diplom\\ru-promptriever\\pythonProject\\data_preprocessing\\data\\output_final_dataset\\data\\train-00007-of-00008.parquet",
-      "size": 1399904985
-    },
-    {
-      "path": "D:\\HSE\\Course 4\\Diplom\\ru-promptriever\\pythonProject\\data_preprocessing\\data\\output_final_dataset\\data\\test-00000-of-00001.parquet",
-      "size": 18696394
+      "feature": "theistic_framing",
+      "language": "ru",
+      "real_representative": 8,
+      "diagnostic_scores": {
+        "0": 4,
+        "3": 1,
+        "2": 1,
+        "1": 1,
+        "4": 1
+      },
+      "diagnostic_synthetic": 4
     }
   ],
-  "module_a_note": "Final dataset does not preserve original-vs-rewritten only_query status.",
-  "warning": "Keep private_manifest.jsonl out of the annotator package."
+  "selection": "64 random real assignments frozen before new Judge calls; 64 score-coverage diagnostic assignments including actual-Judge-confirmed synthetic supplementation. Report these parts separately.",
+  "language_filter": "English source conditions without French plus function words; Russian >75% Cyrillic alphabetic characters. Final texts must be manually checked before annotation."
 }

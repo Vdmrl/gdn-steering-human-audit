@@ -1,2 +1,3 @@
-argilla>=2.8,<3
+argilla==2.8.0
+requests>=2.32,<3
 

@@ -1,0 +1,1 @@
+Human audit ready:128items,256expected ratings,105real23synthetic,EN64/RU64. Five Judge repeats640/640 complete. Human submissions0. Docker/setup/export/unit/liveQA verified. Main steering Judge remains prohibited. See tasks/human_judge_audit_20261008.md in parent project.

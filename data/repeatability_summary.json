@@ -1,0 +1,94 @@
+{
+  "rubric_version": "5.2.1-review1",
+  "items": 128,
+  "repeats": 5,
+  "human_labels_collected": 0,
+  "repeatability": {
+    "all": {
+      "expected_items": 128,
+      "complete_five_repeat_items": 128,
+      "all_five_identical_pct": 92.96875,
+      "pairwise_exact_pct": 96.71875,
+      "mean_integer_range": 0.0703125,
+      "available_expected_mean_sd_pct": 0.7157690398108543,
+      "available_expected_mean_range_pct": 1.9830957890842433,
+      "normalized_run_means_pct": {
+        "run-0": 21.419270833333332,
+        "run-1": 21.940104166666668,
+        "run-2": 22.200520833333332,
+        "run-3": 21.223958333333332,
+        "run-4": 22.200520833333332
+      }
+    },
+    "numbered": {
+      "expected_items": 32,
+      "complete_five_repeat_items": 32,
+      "all_five_identical_pct": 100,
+      "pairwise_exact_pct": 100,
+      "mean_integer_range": 0,
+      "available_expected_mean_sd_pct": 0.24428771268953337,
+      "available_expected_mean_range_pct": 0.6553622485275316,
+      "normalized_run_means_pct": {
+        "run-0": 25.0,
+        "run-1": 25.0,
+        "run-2": 25.0,
+        "run-3": 25.0,
+        "run-4": 25.0
+      }
+    },
+    "probabilistic_framing": {
+      "expected_items": 32,
+      "complete_five_repeat_items": 32,
+      "all_five_identical_pct": 90.625,
+      "pairwise_exact_pct": 96.25,
+      "mean_integer_range": 0.09375,
+      "available_expected_mean_sd_pct": 0.873102905881269,
+      "available_expected_mean_range_pct": 2.4216422867713674,
+      "normalized_run_means_pct": {
+        "run-0": 20.3125,
+        "run-1": 20.3125,
+        "run-2": 20.3125,
+        "run-3": 19.53125,
+        "run-4": 20.3125
+      }
+    },
+    "complexity": {
+      "expected_items": 32,
+      "complete_five_repeat_items": 32,
+      "all_five_identical_pct": 81.25,
+      "pairwise_exact_pct": 90.625,
+      "mean_integer_range": 0.1875,
+      "available_expected_mean_sd_pct": 1.623815467995614,
+      "available_expected_mean_range_pct": 4.528598199810755,
+      "normalized_run_means_pct": {
+        "run-0": 17.708333333333336,
+        "run-1": 19.791666666666668,
+        "run-2": 20.833333333333336,
+        "run-3": 17.708333333333336,
+        "run-4": 20.833333333333336
+      }
+    },
+    "theistic_framing": {
+      "expected_items": 32,
+      "complete_five_repeat_items": 32,
+      "all_five_identical_pct": 100,
+      "pairwise_exact_pct": 100,
+      "mean_integer_range": 0,
+      "available_expected_mean_sd_pct": 0.12187007267700072,
+      "available_expected_mean_range_pct": 0.326780421227319,
+      "normalized_run_means_pct": {
+        "run-0": 22.65625,
+        "run-1": 22.65625,
+        "run-2": 22.65625,
+        "run-3": 22.65625,
+        "run-4": 22.65625
+      }
+    }
+  },
+  "audit_only_provider_usage": {
+    "unique_requests": 795,
+    "reported_cost_usd": 0.0697328399999999,
+    "tokens": 659587,
+    "missing_cost": 0
+  }
+}

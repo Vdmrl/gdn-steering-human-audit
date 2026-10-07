@@ -1,145 +1,96 @@
-# Argilla Human Audit for ru-Promptriever
+# GDN Steering Human Audit
 
-## 🚀 Quick Start for Annotators
+Argilla application for blind human validation of the frozen steering Judge. Derived from [ru-promptriever-human-audit](https://github.com/Vdmrl/ru-promptriever-human-audit), retaining its Docker stack and Git history. This is a separate repository because GitHub does not fork a repository into the same owner account.
 
-Assuming Docker Desktop and Git are installed and running, just follow these steps:
+## Start annotation
 
-1. **Pull the latest updates and start the database:**
-   ```powershell
-   git pull
-   docker compose up -d --build
-   ```
-   The setup container automatically creates the users, dataset, and annotation schema on the first launch.
-2. **Open the interface:**
-   Go to: [http://localhost:6900](http://localhost:6900) in your browser.
-   * Login: `daria` (or `vladimir`)
-   * Password: `password`
-3. **Annotate all 64 records** (click Submit for each).
-4. **Export the results:**
-   When you are done (64/64), run this in your terminal:
-   ```powershell
-   docker compose run --rm setup python scripts/export_annotations.py
-   ```
-5. **Save the file:**
-   The script will generate a file at `data/exports/annotations.jsonl`.
+Install Git, Docker Desktop and Python 3.10+. Start Docker Desktop, then:
 
----
-
-## 1. For Annotators
-
-### Prerequisites
-
-You only need:
-1. **Docker Desktop** (must be installed and running)
-2. **Git**
-
-To verify Docker is installed and running, run in your terminal:
-```bash
-docker --version
-docker compose version
+```powershell
+git clone https://github.com/Vdmrl/gdn-steering-human-audit.git
+cd gdn-steering-human-audit
+python start.py
 ```
 
-### Quick Start
+Select **Вова / Стёпа / Слава / Петя** in the launch menu. The script starts Argilla and opens [http://localhost:6900](http://localhost:6900).
 
-1. Clone the repository and navigate into the folder:
-```bash
-git clone https://github.com/Vdmrl/ru-promptriever-human-audit
-cd ru-promptriever-human-audit
+| Person | Login | Assigned sample |
+|---|---|---|
+| Вова | `vova` | A, 64 items |
+| Стёпа | `stepa` | A, the same 64 items independently |
+| Слава | `slava` | B, 64 different items |
+| Петя | `petya` | B, the same 64 items independently |
+
+Local default password: `password`. Use `.env.example` to configure passwords before first initialization. This stack is intended for local annotation, not an Internet-facing service. Progress persists in Docker volumes. Never remove volumes after annotation starts.
+
+Each account sees four datasets with 16 tasks each. Each dataset contains eight English and eight Russian answers. A and B do not overlap. Submit a score for **one named feature per answer**. Judge scores, method labels, synthetic/real provenance and private mappings are not uploaded to Argilla.
+
+The displayed score is the digit before the dash; small shortcut numbers in Argilla buttons are not scores. Full Russian explanations and the verbatim English Judge rubric are under **GUIDELINES**. No factual correctness, answer quality or content-preservation assessment is requested.
+
+Scales: Numbered **0–4**, Probability **0–4**, Technical **0–3**, theistic framing **0–4**. French and Chinese are not annotated. Texts are displayed in full, without rewriting or truncation.
+
+Before the main sample, read [TRAINING.md](TRAINING.md) and discuss those separate examples. Do not discuss main-sample answers with your partner or open private owner files.
+
+## Export
+
+When you have submitted your 64 answers:
+
+```powershell
+docker compose run --rm setup python scripts/export_annotations.py
 ```
 
-2. Start the Argilla server:
-```bash
-docker compose up -d --build
-```
-Wait approximately 1 minute for all containers to initialize.
+Send `data/exports/annotations.jsonl` to the study owner. Do not send `.env` or Docker volumes. If everyone uses a different local installation, the owner merges the exports; only the assigned users' submitted responses count. Drafts and unsubmitted responses are excluded. Duplicate submitted `(item_id, username)` pairs are rejected rather than counted twice.
 
-3. Open the Argilla login page in your browser:
-[http://localhost:6900](http://localhost:6900)
+Stop/resume without losing progress:
 
-4. Log in using your assigned annotator account:
-- **Username**: `daria` or `vladimir`
-- **Password**: `password` (default password)
-
-> [!NOTE]
-> All default passwords (for the administrator and the annotators) are set to `password` by default to simplify local runs. If you want to customize them, create a `.env` file next to `docker-compose.yml` prior to starting the containers:
-> ```dotenv
-> ARGILLA_OWNER_PASSWORD=new-owner-password
-> ARGILLA_DARIA_PASSWORD=new-daria-password
-> ARGILLA_VLADIMIR_PASSWORD=new-vladimir-password
-> ```
-
-### Annotation Guidelines
-
-For each query record, you will be presented with:
-1. **Query**: The final query string.
-2. **Positive passage**: The expected positive document.
-3. **Instruction**: The search instruction constraint.
-4. **Documents**: Between one and five documents, shown in randomized order. The number depends on how many filtered negatives remain in the final dataset row.
-
-For each example, answer the following mandatory questions:
-- **Query Acceptable**: Is the query written in understandable and acceptable Russian? (Yes / No)
-- **Passage Acceptable**: Is the positive passage written in understandable and coherent Russian? (Yes / No)
-- **Document Roles**: For each displayed document, choose exactly one option:
-  - `1`: The document does not answer the query.
-  - `2`: The document answers the query but violates the instruction.
-  - `3`: The document answers the query and satisfies the instruction.
-
-*Note: The documents are blinded and shuffled. Do not try to guess which document was originally positive or negative.*
-
-### Saving & Exporting Results
-
-- If you cannot finish all examples in one session, click **Save as Draft** in the UI. Your progress is saved in persistent Docker volumes and will not be lost.
-- To pause the server, run:
-```bash
+```powershell
 docker compose stop
-```
-- To resume the server, run:
-```bash
 docker compose start
 ```
-- Once all records are annotated, export the results:
-```bash
-docker compose run --rm setup python scripts/export_annotations.py --output-dir data/exports
-```
-This script saves the results to:
-`data/exports/annotations.jsonl`
 
-Please send `annotations.jsonl` to the project owner. Do not share your `.env` or Docker volumes.
+## Owner: final metrics
 
----
+Owner-only `data/private_manifest.jsonl` and `data/private/judge-repeats/` must stay outside Git and outside annotators' folders. Keep independent exports in one combined JSONL, then run:
 
-## 2. For Project Owners: Sample Preparation
-
-The evaluation sample is pre-prepared from the final parquet dataset. If you need to regenerate the evaluation split, use the preparation script:
-```bash
-python scripts/prepare_from_final_dataset.py --dataset-dir <path_to_final_parquet_dataset> --out-dir data
-```
-This generates:
-- `data/public_items.jsonl`: The public blinded split.
-- `data/private_manifest.jsonl`: Ground-truth labels and document roles (**do not share this file with annotators**).
-- `data/sample_metadata.json`: Metadata tracking of dataset hashes.
-
-The frozen 64-record sample is random within the train and synthetic-test splits and does not condition on the number of retained negatives. In the current sample, records contain 1, 2, 3, or 4 documents.
-
-If Argilla was already initialized with an older frozen sample, stop it and remove the old local volumes before running setup for this revised sample. This discards only the old local annotations and must not be done after the final audit has started.
-
-### Calculating the audit metrics
-
-After both independent annotation exports are available in `data/exports/annotations.jsonl`, run:
-```bash
-docker compose run --rm setup python scripts/calculate_kappa.py \
-  --input /workspace/data/exports/annotations.jsonl \
-  --manifest /workspace/data/private_manifest.jsonl \
-  --output /workspace/data/exports/audit_metrics.json
+```powershell
+python scripts/calculate_metrics.py --input data/exports/annotations.jsonl
 ```
 
-The report contains query and passage acceptability, positive/negative and strict-record validity, split-wise results, negative-type diagnostics, exact agreement, Cohen's kappa, and record-cluster bootstrap 95% intervals.
+Outputs: `data/exports/audit_metrics.json` and `.html`. They include exact Judge–human agreement, normalized MAE and signed bias in percentage points, linear-weighted Cohen's kappa, per-feature confusion matrices, human–human agreement, available-logprob expectation error and 95% bootstrap intervals. Bootstrap resamples whole source prompt clusters, keeping both human ratings together. Identical prompts with multiple method answers are not independent units. Kappa is not pooled across incompatible score scales. Human disagreement is preserved; no arbitrary majority label is invented for two raters.
 
----
+Primary Judge reference is fresh **run-0 after sample freezing**, not the candidate score used to select diagnostic cases. Report agreement with each human, plus MAE against their mean. Human agreement is unavailable until real human annotations arrive; an empty export is not a passing result.
 
-## Project Structure
+## Sample and limitations
 
-- `docker-compose.yml`: Launches Argilla Server, PostgreSQL, Elasticsearch, Redis, and the setup/export container.
-- `scripts/setup_argilla.py`: Registers workspaces, configures schema, creates annotator users, and uploads the dataset.
-- `scripts/export_annotations.py`: Pulls completed annotator responses and saves them in CSV/JSONL formats.
-- `data/public_items.jsonl`: Pre-randomized and blinded quality evaluation dataset.
+128 unique answer/feature assignments, 64 English and 64 Russian; 256 expected human ratings. **105 real answers and 23 synthetic supplements**. Each feature/language stratum contains 16 items:
+
+- Eight random real answers selected before the new candidate Judge calls: the representative part.
+- Eight diagnostic answers chosen for actual Judge score coverage. Prefer real answers, supplement missing scores with Codex-authored examples checked by the frozen Judge.
+
+All score values are covered in candidate-selection scores for each feature/language. These are **Judge-confirmed scores, not human ground truth**, and subsequent runs may differ. Diagnostic selection is score-conditioned and must be reported separately from the random real sample; pooled descriptive agreement is not a population accuracy estimate.
+
+Real English responses come from the earlier Qwen9B final cohort; real Russian responses come from actual Russian language development runs. This validates the rubric on those answer types; it does not independently validate every later repaired cohort, other models, French or Chinese. Original English scenarios retain their historical instructions. No real answer was translated, cleaned or regenerated for this audit. Script language screening is documented in `data/sample_metadata.json` and is not itself a language Judge.
+
+`sample_metadata.json` pins hashes and assignments. The private owner manifest additionally pins source paths/hashes/IDs, methods, selection scores and selection roles. Source generations are not included in Git. Do not regenerate a frozen public sample after annotation starts.
+
+## Owner: repeatability and supplementation
+
+The included `vendor/ready_judge` is a byte-identical copy of Judge **5.2.1-review1**. Scoring prompts/config remain unchanged: `deepseek/deepseek-v4.1-flash`, fixed CoreWeave routing, temperature 0, no reasoning, logprobs top 10. API keys are entered invisibly or read from the environment; never saved.
+
+```powershell
+python scripts/prepare_audit.py --run --repeats 5
+```
+
+This is an explicit **audit-only** paid action. It resumes only missing judgments using stable IDs and immutable inputs/config. Five independent requests per frozen item are sent with identical payloads. Report all-five exact stability, pairwise agreement, score ranges, available-expected-score SD/range and drift in normalized run means. This measures repeatability, not invariance to arbitrary paraphrases or agreement with humans. Missing logprob labels are not filled with zeros.
+
+The owner preparation pool in `data/private/candidates.jsonl` contains the already frozen real candidates; additional locally authored candidates are optional `extra-candidates.jsonl`. Candidate-selection responses and unsuccessful attempts are retained privately. An unavailable desired score causes visible preparation failure; it is never assigned by hand. This command does not authorize evaluation of the entire steering experiment bank.
+
+## Checks
+
+```powershell
+python -m venv .venv
+.venv/Scripts/python -m pip install -r requirements.txt
+.venv/Scripts/python -m unittest discover -s tests -v
+```
+
+Tests use fixtures/mocked objects and spend no API credits. Live smoke checks use a separate QA workspace and never submit ratings in study datasets. Setup is idempotent and refuses different data, labels or instructions on existing datasets.
