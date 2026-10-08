@@ -141,12 +141,14 @@ def main():
             print('No frozen sample yet: missing candidate scores. Dry run or API errors.', flush=True)
             return
         private = freeze(candidates, scores)
+    metadata = json.loads((DATA / 'sample_metadata.json').read_text(encoding='utf-8'))
+    repeat_root = DATA / metadata.get('judge_repeats_path', 'private/judge-repeats')
     for repeat in range(args.repeats):
         for feature in FEATURES:
-            input_path = DATA / 'private' / f'final-{feature}.jsonl'
+            input_path = repeat_root.parent / f'final-{feature}.jsonl'
             selected = [r for r in private if r['feature'] == feature]
             write_jsonl(input_path, [{'prompt_id': r['prompt_id'], 'answer_id': r['item_id'], 'scenario': r['scenario'], 'text': r['text']} for r in selected])
-            progress = evaluate(input_path, DATA / 'private/judge-repeats' / f'run-{repeat}' / feature, [feature], run=args.run, workers=8, secret=secret)
+            progress = evaluate(input_path, repeat_root / f'run-{repeat}' / feature, [feature], run=args.run, workers=8, secret=secret)
             print('REPEAT', repeat, feature, progress, flush=True)
             if args.run and not progress['complete']:
                 raise RuntimeError('Missing final audit scores; safely resume this command')

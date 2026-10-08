@@ -53,5 +53,17 @@ class AuditTests(unittest.TestCase):
         self.assertEqual(rows[0]['responses']['trait_score'], '2')
         self.assertEqual(rows[0]['statuses']['trait_score'], 'submitted')
 
+    def test_frozen_russian_v2_is_monolingual(self):
+        import re
+        from audit_common import load_public
+        rows, _, metadata = load_public()
+        if metadata['study_version'] != '2.0':
+            self.skipTest('Monolingual contract applies to sample2')
+        russian = [r for r in rows if r['language'] == 'ru']
+        self.assertEqual(len(russian), 64)
+        for row in russian:
+            self.assertIsNone(re.search(r'[A-Za-z\u4e00-\u9fff]', row['scenario'] + row['text']))
+        self.assertEqual(metadata['workspace_prefix'], 'steering-v2-')
+
 if __name__ == '__main__':
     unittest.main()

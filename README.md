@@ -50,7 +50,7 @@ docker compose start
 
 ## Owner: final metrics
 
-Owner-only `data/private_manifest.jsonl` and `data/private/judge-repeats/` must stay outside Git and outside annotators' folders. Keep independent exports in one combined JSONL, then run:
+Owner-only `data/private_manifest.jsonl` and `data/private-v2/judge-repeats/` must stay outside Git and outside annotators' folders. Keep independent exports in one combined JSONL, then run:
 
 ```powershell
 python scripts/calculate_metrics.py --input data/exports/annotations.jsonl
@@ -62,14 +62,18 @@ Primary Judge reference is fresh **run-0 after sample freezing**, not the candid
 
 ## Sample and limitations
 
-128 unique answer/feature assignments, 64 English and 64 Russian; 256 expected human ratings. **105 real answers and 23 synthetic supplements**. Each feature/language stratum contains 16 items:
+Sample **2.0** contains 128 unique answer/feature assignments, 64 English and 64 Russian; 256 expected human ratings. **53 real answers and 75 authored examples**. Each feature/language stratum contains 16 items:
 
-- Eight random real answers selected before the new candidate Judge calls: the representative part.
-- Eight diagnostic answers chosen for actual Judge score coverage. Prefer real answers, supplement missing scores with Codex-authored examples checked by the frozen Judge.
+- English: eight random real answers per feature selected before candidate Judge calls, plus eight diagnostic answers chosen for actual Judge score coverage. The original English sample is unchanged.
+- Russian: sixteen coherent, entirely Russian rubric-diagnostic answers per feature, authored for this audit. Both scenario and answer are Russian; there are no English/Chinese insertions or generated loops. Their actual candidate scores cover every score level. These are not unmodified steering outputs and not a representative sample of model generations.
+
+Russian cases use four thematic prompt families per feature with different trait strengths. Sixteen answers are not sixteen independent situations; bootstrap keeps all answers from one prompt family together.
 
 All score values are covered in candidate-selection scores for each feature/language. These are **Judge-confirmed scores, not human ground truth**, and subsequent runs may differ. Diagnostic selection is score-conditioned and must be reported separately from the random real sample; pooled descriptive agreement is not a population accuracy estimate.
 
-Real English responses come from the earlier Qwen9B final cohort; real Russian responses come from actual Russian language development runs. This validates the rubric on those answer types; it does not independently validate every later repaired cohort, other models, French or Chinese. Original English scenarios retain their historical instructions. No real answer was translated, cleaned or regenerated for this audit. Script language screening is documented in `data/sample_metadata.json` and is not itself a language Judge.
+Real English responses come from the earlier Qwen9B final cohort. Original English scenarios retain their historical instructions. Russian examples test how well people and Judge interpret the rubric on readable Russian, not how well Russian steering works. Report English random-real, English diagnostic and Russian curated results separately. This audit does not independently validate every later repaired cohort, other models, French or Chinese.
+
+The previous mixed-language sample and its scores are archived privately as version1; they are not reused as scores for rewritten Russian texts. Version2 has separate Argilla workspaces and fresh five-repeat scores for the frozen sample. Old datasets and any earlier annotations remain preserved.
 
 `sample_metadata.json` pins hashes and assignments. The private owner manifest additionally pins source paths/hashes/IDs, methods, selection scores and selection roles. Source generations are not included in Git. Do not regenerate a frozen public sample after annotation starts.
 

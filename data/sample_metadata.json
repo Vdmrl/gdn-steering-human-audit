@@ -1,5 +1,5 @@
 {
-  "study_version": "1.0",
+  "study_version": "2.0",
   "rubric_version": "5.2.1-review1",
   "shuffle_seed": 20261008,
   "items": 128,
@@ -26,113 +26,112 @@
       "items": 64
     }
   },
-  "public_sha256": "ea8c0ce3bf8fc0fd819d3eea4430732a81083ff85552d0ef46dc4290bcd64201",
+  "public_sha256": "76715f15f381baf3842802dc3b7396e1206d0d1038eeadcfb3cacc700aad36c0",
   "rubric_sha256": "061920594e7b97545d2b7480db8da3d33f64afaa38d372dc11858a0f38c23ee1",
-  "private_manifest_sha256": "4a17f1d22f365a8060d89b01b61fe83a04ed1b0d27530468447cc0d8bd3456d9",
+  "private_manifest_sha256": "09ca22a7ceca291e6b4cbfd8560fcc88ba6b99d33dc83f6b5753ac77a057bc24",
   "coverage": [
     {
       "feature": "numbered",
       "language": "en",
-      "real_representative": 8,
-      "diagnostic_scores": {
+      "judge_selection_scores": {
+        "0": 10,
         "2": 1,
-        "0": 4,
         "1": 1,
-        "3": 1,
-        "4": 1
-      },
-      "diagnostic_synthetic": 3
-    },
-    {
-      "feature": "probabilistic_framing",
-      "language": "en",
-      "real_representative": 8,
-      "diagnostic_scores": {
-        "1": 1,
-        "2": 1,
-        "4": 1,
-        "0": 4,
+        "4": 3,
         "3": 1
       },
-      "diagnostic_synthetic": 3
-    },
-    {
-      "feature": "complexity",
-      "language": "en",
-      "real_representative": 8,
-      "diagnostic_scores": {
-        "0": 5,
-        "3": 1,
-        "1": 1,
-        "2": 1
-      },
-      "diagnostic_synthetic": 3
-    },
-    {
-      "feature": "theistic_framing",
-      "language": "en",
-      "real_representative": 8,
-      "diagnostic_scores": {
-        "4": 1,
-        "3": 1,
-        "0": 4,
-        "2": 1,
-        "1": 1
-      },
-      "diagnostic_synthetic": 2
+      "synthetic": 3
     },
     {
       "feature": "numbered",
       "language": "ru",
-      "real_representative": 8,
-      "diagnostic_scores": {
-        "1": 1,
+      "judge_selection_scores": {
         "0": 4,
-        "3": 1,
-        "4": 1,
-        "2": 1
+        "1": 3,
+        "2": 4,
+        "4": 3,
+        "3": 2
       },
-      "diagnostic_synthetic": 4
+      "synthetic": 16
+    },
+    {
+      "feature": "probabilistic_framing",
+      "language": "en",
+      "judge_selection_scores": {
+        "0": 11,
+        "1": 2,
+        "2": 1,
+        "4": 1,
+        "3": 1
+      },
+      "synthetic": 3
     },
     {
       "feature": "probabilistic_framing",
       "language": "ru",
-      "real_representative": 8,
-      "diagnostic_scores": {
-        "3": 1,
+      "judge_selection_scores": {
         "0": 4,
-        "4": 1,
-        "1": 1,
+        "1": 3,
+        "2": 4,
+        "3": 2,
+        "4": 3
+      },
+      "synthetic": 16
+    },
+    {
+      "feature": "complexity",
+      "language": "en",
+      "judge_selection_scores": {
+        "0": 12,
+        "1": 2,
+        "3": 1,
         "2": 1
       },
-      "diagnostic_synthetic": 3
+      "synthetic": 3
     },
     {
       "feature": "complexity",
       "language": "ru",
-      "real_representative": 8,
-      "diagnostic_scores": {
-        "0": 2,
-        "1": 4,
-        "3": 1,
+      "judge_selection_scores": {
+        "0": 3,
+        "1": 8,
+        "2": 4,
+        "3": 1
+      },
+      "synthetic": 16
+    },
+    {
+      "feature": "theistic_framing",
+      "language": "en",
+      "judge_selection_scores": {
+        "3": 3,
+        "0": 9,
+        "4": 1,
+        "1": 2,
         "2": 1
       },
-      "diagnostic_synthetic": 1
+      "synthetic": 2
     },
     {
       "feature": "theistic_framing",
       "language": "ru",
-      "real_representative": 8,
-      "diagnostic_scores": {
+      "judge_selection_scores": {
         "0": 4,
-        "3": 1,
-        "2": 1,
-        "1": 1,
-        "4": 1
+        "1": 3,
+        "2": 3,
+        "3": 2,
+        "4": 4
       },
-      "diagnostic_synthetic": 4
+      "synthetic": 16
     }
   ],
-  "selection": "64 random real assignments frozen before new Judge calls; 64 score-coverage diagnostic assignments including actual-Judge-confirmed synthetic supplementation. Report these parts separately.",
-  "language_filter": "English source conditions without French plus function words; Russian >75% Cyrillic alphabetic characters. Final texts must be manually checked before annotation."
+  "selection": "English64 unchanged:32 random real+32 score-coverage diagnostic. Russian64: Codex-authored coherent monolingual rubric-diagnostic cases; NOT representative steering outputs. Report languages and sample parts separately.",
+  "language_filter": "Russian prompts and answers manually authored in Russian only; no Latin/Chinese letters. English sample unchanged.",
+  "workspace_prefix": "steering-v2-",
+  "source_counts": {
+    "real": 53,
+    "synthetic": 75
+  },
+  "archived_v1_public_sha256": "ea8c0ce3bf8fc0fd819d3eea4430732a81083ff85552d0ef46dc4290bcd64201",
+  "judge_repeats_path": "private-v2/judge-repeats"
 }

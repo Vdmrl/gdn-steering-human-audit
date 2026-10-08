@@ -29,7 +29,7 @@ def main():
     result = []
     for group in ('A', 'B'):
         for feature in FEATURES:
-            dataset = client.datasets(name=feature, workspace='steering-' + group.lower())
+            dataset = client.datasets(name=feature, workspace=metadata.get('workspace_prefix', 'steering-') + group.lower())
             if dataset is None:
                 raise RuntimeError('Missing dataset; setup must finish before export')
             for record in dataset.records(with_responses=True):

@@ -151,6 +151,8 @@ def analyze(annotations, manifest, repeats, public_hash, rubric, resamples=2000)
     views = {'all_descriptive': entries}
     for part in ('representative', 'diagnostic'):
         views[part] = [e for e in entries if e['sample_part'] == part]
+    for language in ('en', 'ru'):
+        views['language/' + language] = [e for e in entries if e['language'] == language]
     for feature in FEATURES:
         views[feature] = [e for e in entries if e['feature'] == feature]
         for part in ('representative', 'diagnostic'):
@@ -167,12 +169,14 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--input', default=str(DATA / 'exports/annotations.jsonl'))
     parser.add_argument('--manifest', default=str(DATA / 'private_manifest.jsonl'))
-    parser.add_argument('--judge-repeats', default=str(DATA / 'private/judge-repeats'))
+    parser.add_argument('--judge-repeats')
     parser.add_argument('--output', default=str(DATA / 'exports/audit_metrics.json'))
     parser.add_argument('--bootstrap', type=int, default=2000)
     args = parser.parse_args()
     assert args.bootstrap >= 100
     _, rubric, metadata = load_public()
+    if args.judge_repeats is None:
+        args.judge_repeats = str(DATA / metadata.get('judge_repeats_path', 'private/judge-repeats'))
     assert sha(args.manifest) == metadata['private_manifest_sha256']
     manifest = read_jsonl(args.manifest)
     for feature in FEATURES:
@@ -181,6 +185,9 @@ def main():
         assert actual == frozen, 'Repeated Judge input differs from frozen human sample'
     annotations = read_jsonl(args.input) if Path(args.input).exists() else []
     report = analyze(annotations, manifest, load_repeats(args.judge_repeats), metadata['public_sha256'], rubric, args.bootstrap)
+    report['sample_version'] = metadata['study_version']
+    report['study'] = 'steering-human-audit-' + metadata['study_version']
+    report['sample_selection'] = metadata['selection']
     output = Path(args.output)
     output.parent.mkdir(parents=True, exist_ok=True)
     output.write_text(json.dumps(report, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')

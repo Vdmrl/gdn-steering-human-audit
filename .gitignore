@@ -3,6 +3,8 @@
 __pycache__/
 *.pyc
 data/private/
+data/private-v2/
+data/private-archives/
 data/training-private.jsonl
 data/private_manifest.jsonl
 data/argilla_dataset.json

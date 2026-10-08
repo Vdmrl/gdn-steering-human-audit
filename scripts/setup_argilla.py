@@ -47,7 +47,7 @@ def main():
         raise RuntimeError('Argilla did not become ready; credentials and server logs must be inspected')
     datasets = []
     for group in ('A', 'B'):
-        workspace_name = 'steering-' + group.lower()
+        workspace_name = metadata.get('workspace_prefix', 'steering-') + group.lower()
         workspace = client.workspaces(workspace_name)
         if workspace is None:
             workspace = rg.Workspace(name=workspace_name, client=client).create()
@@ -84,6 +84,13 @@ def main():
                 assert actual_labels == labels, 'Existing scale differs from frozen rubric'
                 assert dataset.settings.guidelines == guide, 'Existing instructions differ from frozen rubric'
             datasets.append({'workspace': workspace_name, 'dataset': feature, 'records': len(selected)})
+    if metadata.get('workspace_prefix', 'steering-') != 'steering-':
+        for group in ('A', 'B'):
+            previous = client.workspaces('steering-' + group.lower())
+            if previous is not None:
+                for user in list(previous.users):
+                    if user.username in USERS and USERS[user.username][1] == group:
+                        user.remove_from_workspace(previous)
     (DATA / 'argilla_dataset.json').write_text(json.dumps({'public_sha256': metadata['public_sha256'], 'datasets': datasets}, ensure_ascii=False, indent=2), encoding='utf-8')
     print('Ready: vova / stepa / slava / petya, 64 records each, paired blind annotation.')
 
