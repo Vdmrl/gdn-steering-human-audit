@@ -1,6 +1,6 @@
 {
-  "study_version": "6.0",
-  "rubric_version": "6.2.0-religious-review1",
+  "study_version": "7.0",
+  "rubric_version": "6.3.0-multilingual-complexity-review1",
   "shuffle_seed": 20261009,
   "items": 128,
   "human_ratings_expected": 256,
@@ -26,22 +26,22 @@
       "items": 64
     }
   },
-  "public_sha256": "54d580a7053eace8e84a644275dfffc413648eb10099516f2114abf2f408207b",
-  "rubric_sha256": "dfb8cb0504ccebfb890d697a898e5ae5df510e75b17d651d642fc445a4c4b810",
-  "private_manifest_sha256": "d3663f48bd8450ff52b5a166e76e43bf5fef407581a1da9fdb590dd97b063eba",
-  "workspace_prefix": "steering-v6-",
-  "judge_repeats_path": "private-v6/judge-repeats",
+  "public_sha256": "5d3ee244c904adf1342657ce830340985aa0646418ae31e58e00aaec5fdc2873",
+  "rubric_sha256": "c7facecb53bb9001bfc629d57c5ee4293a6cb7860c54086dbabec63014861678",
+  "private_manifest_sha256": "eabe40c2eea61de392de637a0ffe1231d2c310cb62c6bce8b4d6f81cb67b079d",
+  "workspace_prefix": "steering-",
+  "judge_repeats_path": "private-v7-final/judge-repeats",
   "source_counts": {
     "real": 0,
     "synthetic": 128
   },
   "selection": "All128 Codex-authored coherent diagnostic cases; fixed before Judge scoring, no selection by Judge labels. Not representative steering outputs. Four topic clusters per feature/language; authored levels are design strata, not gold labels.",
-  "judge_resources": "vendor/ready_judge/resources/current_v6_2",
+  "judge_resources": "vendor/ready_judge/resources/current_v6_3",
   "archived_previous_public_sha256": "76715f15f381baf3842802dc3b7396e1206d0d1038eeadcfb3cacc700aad36c0",
   "bootstrap_clusters": "12 topic families; parallel EN/RU and shared Numbered/theistic scenarios clustered together",
-  "previous_study": "5.0",
+  "previous_study": "6.0",
   "annotation_migration": "Only byte-identical answers with unchanged feature definitions retain submitted human responses.",
-  "retained_submitted_human_ratings": 4,
+  "retained_submitted_human_ratings": 0,
   "long_paragraph_item_ids": [
     "cec05eb271743f2947de9199",
     "c3ed9d59cfda78a9d4ed8f19",
@@ -77,6 +77,7 @@
     "fb8bb27109dc6f2717d5c7a1"
   ],
   "long_paragraph_selection": "Every fourth record in each deterministically shuffled group/feature dataset; frozen before Judge scoring.",
+  "paragraph_layout": "One continuous prose paragraph for non-Numbered answers; explanations integrated inside Numbered items. Intermediate7 scores interrupted and archived separately, never used for these revised texts.",
   "coverage": [
     {
       "language": "en",
@@ -122,11 +123,11 @@
       "language": "ru",
       "feature": "numbered",
       "actual_judge_scores": {
-        "4": 6,
+        "4": 4,
         "0": 3,
+        "3": 3,
         "1": 3,
-        "2": 3,
-        "3": 1
+        "2": 3
       }
     },
     {
@@ -143,10 +144,10 @@
       "language": "ru",
       "feature": "complexity",
       "actual_judge_scores": {
-        "0": 4,
-        "1": 5,
-        "2": 3,
-        "3": 4
+        "1": 7,
+        "0": 1,
+        "2": 6,
+        "3": 2
       }
     },
     {

@@ -93,8 +93,8 @@ def main():
                 assert actual_labels == labels, 'Existing scale differs from frozen rubric'
                 assert dataset.settings.guidelines == guide, 'Existing instructions differ from frozen rubric'
             datasets.append({'workspace': workspace_name, 'dataset': feature, 'records': len(selected)})
-    if metadata.get('workspace_prefix', 'steering-') != 'steering-':
-        for prefix in ('steering-', 'steering-v2-', 'steering-v3-', 'steering-v4-', 'steering-v5-'):
+    if metadata.get('workspace_prefix'):
+        for prefix in ('steering-', 'steering-v2-', 'steering-v3-', 'steering-v4-', 'steering-v5-', 'steering-v6-', 'steering-archive-v1-'):
             if prefix == metadata['workspace_prefix']:
                 continue
             for group in ('A', 'B'):

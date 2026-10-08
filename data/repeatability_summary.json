@@ -1,36 +1,36 @@
 {
-  "study_version": "6.0",
+  "study_version": "7.0",
   "features": {
     "all": {
       "expected_items": 128,
       "complete_five_repeat_items": 128,
-      "all_five_identical_pct": 96.09375,
-      "pairwise_exact_pct": 98.28125,
-      "mean_integer_range": 0.0390625,
-      "available_expected_mean_sd_pct": 0.6083938303849576,
-      "available_expected_mean_range_pct": 1.640303533192257,
+      "all_five_identical_pct": 96.875,
+      "pairwise_exact_pct": 98.4375,
+      "mean_integer_range": 0.03125,
+      "available_expected_mean_sd_pct": 0.49967231415986574,
+      "available_expected_mean_range_pct": 1.3457292720733265,
       "normalized_run_means_pct": {
-        "run-0": 56.119791666666664,
-        "run-1": 55.989583333333336,
-        "run-2": 56.640625,
-        "run-3": 56.640625,
-        "run-4": 56.119791666666664
+        "run-0": 56.25,
+        "run-1": 56.4453125,
+        "run-2": 56.25,
+        "run-3": 56.25,
+        "run-4": 56.510416666666664
       }
     },
     "numbered": {
       "expected_items": 32,
       "complete_five_repeat_items": 32,
-      "all_five_identical_pct": 93.75,
-      "pairwise_exact_pct": 97.5,
-      "mean_integer_range": 0.0625,
-      "available_expected_mean_sd_pct": 0.8920350168454114,
-      "available_expected_mean_range_pct": 2.358188403669773,
+      "all_five_identical_pct": 96.875,
+      "pairwise_exact_pct": 98.75,
+      "mean_integer_range": 0.03125,
+      "available_expected_mean_sd_pct": 0.442627109265915,
+      "available_expected_mean_range_pct": 1.1998144361221403,
       "normalized_run_means_pct": {
-        "run-0": 54.6875,
-        "run-1": 53.125,
-        "run-2": 54.6875,
-        "run-3": 54.6875,
-        "run-4": 54.6875
+        "run-0": 53.125,
+        "run-1": 53.90625,
+        "run-2": 53.125,
+        "run-3": 53.125,
+        "run-4": 53.125
       }
     },
     "probabilistic_framing": {
@@ -39,8 +39,8 @@
       "all_five_identical_pct": 100,
       "pairwise_exact_pct": 100,
       "mean_integer_range": 0,
-      "available_expected_mean_sd_pct": 0.06723339276459132,
-      "available_expected_mean_range_pct": 0.1749853020733691,
+      "available_expected_mean_sd_pct": 0.12613395470810893,
+      "available_expected_mean_range_pct": 0.3386350965332116,
       "normalized_run_means_pct": {
         "run-0": 50.0,
         "run-1": 50.0,
@@ -53,16 +53,16 @@
       "expected_items": 32,
       "complete_five_repeat_items": 32,
       "all_five_identical_pct": 90.625,
-      "pairwise_exact_pct": 95.625,
+      "pairwise_exact_pct": 95.0,
       "mean_integer_range": 0.09375,
-      "available_expected_mean_sd_pct": 1.4654034206145186,
-      "available_expected_mean_range_pct": 4.004607212135999,
+      "available_expected_mean_sd_pct": 1.425387062760887,
+      "available_expected_mean_range_pct": 3.831992458147624,
       "normalized_run_means_pct": {
-        "run-0": 47.91666666666667,
-        "run-1": 48.958333333333336,
+        "run-0": 50.0,
+        "run-1": 50.0,
         "run-2": 50.0,
         "run-3": 50.0,
-        "run-4": 47.91666666666667
+        "run-4": 51.04166666666667
       }
     },
     "theistic_framing": {
@@ -71,8 +71,8 @@
       "all_five_identical_pct": 100,
       "pairwise_exact_pct": 100,
       "mean_integer_range": 0,
-      "available_expected_mean_sd_pct": 0.008903491315309323,
-      "available_expected_mean_range_pct": 0.023433214889888317,
+      "available_expected_mean_sd_pct": 0.004541129904552234,
+      "available_expected_mean_range_pct": 0.012475097490330522,
       "normalized_run_means_pct": {
         "run-0": 71.875,
         "run-1": 71.875,
@@ -84,6 +84,6 @@
   },
   "accepted_scores": 640,
   "provider_responses": 641,
-  "cost_usd": 0.030395480000000027,
+  "cost_usd": 0.03016888000000003,
   "interpretation": "Repeatability on authored diagnostic examples; not human agreement or real steering performance."
 }

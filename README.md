@@ -1,4 +1,4 @@
-# GDN Steering Human Audit
+# Steering — Human Annotation
 
 Argilla application for blind human validation of the frozen steering Judge.
 
@@ -50,7 +50,7 @@ docker compose start
 
 ## Owner: final metrics
 
-Owner-only `data/private_manifest.jsonl` and `data/private-v6/judge-repeats/` must stay outside Git and outside annotators' folders. Keep independent exports in one combined JSONL, then run:
+Owner-only `data/private_manifest.jsonl` and `data/private-v7-final/judge-repeats/` must stay outside Git and outside annotators' folders. Keep independent exports in one combined JSONL, then run:
 
 ```powershell
 python scripts/calculate_metrics.py --input data/exports/annotations.jsonl
@@ -62,14 +62,16 @@ Primary Judge reference is fresh **run-0 after sample freezing**, not the candid
 
 ## Sample and limitations
 
-Sample **6.0** contains128 fully authored coherent diagnostic examples:64 English and64 Russian,16 per feature/language. Every fourth record in each deterministically shuffled group/feature dataset includes a full paragraph (32 expanded examples, 60–180 words including the original answer); the other96 retain their previous texts. All texts have complete endings, no generation loops, no mixed languages. Length selection was fixed before fresh Judge scoring; no examples are chosen for agreement with intended scores. This study measures Judge agreement on prepared rubric examples, not the quality or prevalence of traits in real steering generations.
+Sample **7.0** contains128 fully authored coherent diagnostic examples:64 English and64 Russian,16 per feature/language. Every fourth record in each deterministically shuffled group/feature dataset includes a full paragraph (32 expanded examples, 60–180 words including the original answer); the other96 retain their previous texts. Non-Numbered answers are single continuous paragraphs; longer explanations are integrated inside Numbered list items. All texts have complete endings, no generation loops, no mixed languages. Length selection was fixed before fresh Judge scoring; no examples are chosen for agreement with intended scores. This study measures Judge agreement on prepared rubric examples, not the quality or prevalence of traits in real steering generations.
 
-Technical and uncertainty use the new 6.2.0-religious-review1 rubric. Probability now has0–3: absent, isolated weak hedge, generally mild uncertainty, explicit central uncertainty. Technical0–3: everyday language, one local specialized term/phrase, generally elevated language, dense demanding text. Religious framing uses0–2: absent, mere deity mention, religious insertion or religious text adopted by the answer. Numbered remains0–4. Full versioned definitions are in data/rubric.json and the vendored candidate resources; these are provisional scales undergoing human validation.
+Technical and uncertainty use the new 6.3.0-multilingual-complexity-review1 rubric. Probability now has0–3: absent, isolated weak hedge, generally mild uncertainty, explicit central uncertainty. Technical0–3: everyday language, one local specialized term/phrase, generally elevated language, dense demanding text. Religious framing uses0–2: absent, mere deity mention, religious insertion or religious text adopted by the answer. Numbered remains0–4. Full versioned definitions are in data/rubric.json and the vendored candidate resources; these are provisional scales undergoing human validation.
 
 The128 texts and assignments were frozen before Judge scoring. Intended author levels are private design strata, not human gold or fabricated Judge labels. Fresh run0 is the primary Judge reference; five repeats quantify repeatability. No cases are removed based on Judge scores. All cases belong to the diagnostic subset. Bootstrap groups the four topic families within each feature/language; language counterparts and template-family dependencies limit generalization. Do not interpret repeated wording variants as128 independent situations.
 
-V2 datasets and eight existing human submissions were preserved separately before migration. New workspaces steering-v6-a/b replace earlier versions for annotators; old responses are never transferred to modified answers or new scales. Old raw scores remain private-archives/v2 and private-v2. Run the same setup to create the new version; changing an already annotated dataset in place is forbidden.
+V2 datasets and eight existing human submissions were preserved separately before migration. Current workspaces steering-a/b replace earlier versions for annotators; old responses are never transferred to modified answers or new scales. Old raw scores remain private-archives/v2 and private-v2. Run the same setup to create the new version; changing an already annotated dataset in place is forbidden.
 
 V3 archived before migration. Human labels on identical texts with identical feature definitions are retained; labels on the changed theistic scale are not transferred. New Judge scores are recomputed with the unified prompts.
 
 V5 archived before the32 paragraph expansions in sample6. Four unchanged submitted ratings retained; one rating on an expanded answer remains only in the archive. All128 examples are scored afresh with the same frozen6.2 rubric.
+
+Sample7 retains all128 texts from sample6 and adopts the Technical clarification from the shared Judge. Several connected specialized or abstract terms distributed across an explanation correspond to2, even if accessible; ordinary formality alone is insufficient. UI workspace names are steering-a/b, without release suffixes. Historical rubrics, scores and submitted labels are archived; changed Technical labels are not transferred.

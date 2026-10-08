@@ -57,25 +57,25 @@ class AuditTests(unittest.TestCase):
         import re
         from audit_common import load_public
         rows, _, metadata = load_public()
-        if metadata['study_version'] not in ('2.0', '3.0', '4.0', '5.0', '6.0'):
+        if metadata['study_version'] not in ('2.0', '3.0', '4.0', '5.0', '6.0', '7.0'):
             self.skipTest('Monolingual contract applies to sample2')
         russian = [r for r in rows if r['language'] == 'ru']
         self.assertEqual(len(russian), 64)
         for row in russian:
             self.assertIsNone(re.search(r'[A-Za-z\u4e00-\u9fff]', row['scenario'] + row['text']))
-        self.assertEqual(metadata['workspace_prefix'], 'steering-v' + metadata['study_version'][0] + '-')
+        self.assertEqual(metadata['workspace_prefix'], 'steering-' if metadata['study_version'] == '7.0' else 'steering-v' + metadata['study_version'][0] + '-')
 
     def test_curated_v3_is_complete_readable_and_new_scale_is_explicit(self):
         from audit_common import load_public
         import re
         rows, rubric, metadata = load_public()
-        if metadata['study_version'] not in ('3.0', '4.0', '5.0', '6.0'):
+        if metadata['study_version'] not in ('3.0', '4.0', '5.0', '6.0', '7.0'):
             self.skipTest('Curated contract applies to sample3')
         self.assertEqual(metadata['source_counts'], {'real': 0, 'synthetic': 128})
         self.assertEqual(rubric['features']['probabilistic_framing']['maximum'], 3)
         if metadata['study_version'] == '4.0':
             self.assertEqual(rubric['features']['theistic_framing']['maximum'], 3)
-        if metadata['study_version'] in ('5.0', '6.0'):
+        if metadata['study_version'] in ('5.0', '6.0', '7.0'):
             self.assertEqual(rubric['features']['theistic_framing']['maximum'], 2)
         for row in rows:
             self.assertLess(len(row['text']), 1800)
@@ -88,7 +88,7 @@ class AuditTests(unittest.TestCase):
         import random
         from audit_common import FEATURES, load_public
         rows, _, metadata = load_public()
-        if metadata['study_version'] != '6.0':
+        if metadata['study_version'] not in ('6.0', '7.0'):
             self.skipTest('Long paragraph contract applies to sample6')
         selected_ids = set()
         for group in ('A', 'B'):
@@ -101,6 +101,11 @@ class AuditTests(unittest.TestCase):
                     self.assertGreaterEqual(len(row['text'].split('\n\n')[-1].split()), 50)
         self.assertEqual(selected_ids, set(metadata['long_paragraph_item_ids']))
         self.assertEqual(len(selected_ids), 32)
+        for row in rows:
+            if metadata['study_version'] == '7.0':
+                self.assertNotIn('\n\n', row['text'])
+                if row['feature'] != 'numbered':
+                    self.assertNotIn('\n', row['text'])
 
 if __name__ == '__main__':
     unittest.main()
