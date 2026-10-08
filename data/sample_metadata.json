@@ -1,7 +1,7 @@
 {
-  "study_version": "2.0",
-  "rubric_version": "5.2.1-review1",
-  "shuffle_seed": 20261008,
+  "study_version": "3.0",
+  "rubric_version": "6.0.0-concrete-audit-review1",
+  "shuffle_seed": 20261009,
   "items": 128,
   "human_ratings_expected": 256,
   "assignments": {
@@ -26,112 +26,103 @@
       "items": 64
     }
   },
-  "public_sha256": "76715f15f381baf3842802dc3b7396e1206d0d1038eeadcfb3cacc700aad36c0",
-  "rubric_sha256": "061920594e7b97545d2b7480db8da3d33f64afaa38d372dc11858a0f38c23ee1",
-  "private_manifest_sha256": "09ca22a7ceca291e6b4cbfd8560fcc88ba6b99d33dc83f6b5753ac77a057bc24",
+  "public_sha256": "ac7e94649158f29a8ba33a7f222d604b859cae2169ebd9ffc3a34070579655f9",
+  "rubric_sha256": "5c9fdaecb492ccf4ec984b0a205922b9469f45373c6bb2d202829c8308188dd6",
+  "private_manifest_sha256": "a0b5c445ebb128092bd24e76de08d5e52ffb009817b5939395a1424da29e96a7",
+  "workspace_prefix": "steering-v3-",
+  "judge_repeats_path": "private-v3/judge-repeats",
+  "source_counts": {
+    "real": 0,
+    "synthetic": 128
+  },
+  "selection": "All128 Codex-authored coherent diagnostic cases; fixed before Judge scoring, no selection by Judge labels. Not representative steering outputs. Four topic clusters per feature/language; authored levels are design strata, not gold labels.",
+  "judge_resources": "vendor/ready_judge/resources/candidates/audit_v6_review1",
+  "archived_previous_public_sha256": "76715f15f381baf3842802dc3b7396e1206d0d1038eeadcfb3cacc700aad36c0",
+  "bootstrap_clusters": "12 topic families; parallel EN/RU and shared Numbered/theistic scenarios clustered together",
   "coverage": [
     {
+      "language": "en",
       "feature": "numbered",
-      "language": "en",
-      "judge_selection_scores": {
-        "0": 10,
-        "2": 1,
-        "1": 1,
-        "4": 3,
-        "3": 1
-      },
-      "synthetic": 3
-    },
-    {
-      "feature": "numbered",
-      "language": "ru",
-      "judge_selection_scores": {
-        "0": 4,
-        "1": 3,
-        "2": 4,
-        "4": 3,
-        "3": 2
-      },
-      "synthetic": 16
-    },
-    {
-      "feature": "probabilistic_framing",
-      "language": "en",
-      "judge_selection_scores": {
-        "0": 11,
-        "1": 2,
-        "2": 1,
-        "4": 1,
-        "3": 1
-      },
-      "synthetic": 3
-    },
-    {
-      "feature": "probabilistic_framing",
-      "language": "ru",
-      "judge_selection_scores": {
-        "0": 4,
-        "1": 3,
-        "2": 4,
-        "3": 2,
-        "4": 3
-      },
-      "synthetic": 16
-    },
-    {
-      "feature": "complexity",
-      "language": "en",
-      "judge_selection_scores": {
-        "0": 12,
-        "1": 2,
-        "3": 1,
-        "2": 1
-      },
-      "synthetic": 3
-    },
-    {
-      "feature": "complexity",
-      "language": "ru",
-      "judge_selection_scores": {
-        "0": 3,
-        "1": 8,
-        "2": 4,
-        "3": 1
-      },
-      "synthetic": 16
-    },
-    {
-      "feature": "theistic_framing",
-      "language": "en",
-      "judge_selection_scores": {
-        "3": 3,
-        "0": 9,
-        "4": 1,
-        "1": 2,
-        "2": 1
-      },
-      "synthetic": 2
-    },
-    {
-      "feature": "theistic_framing",
-      "language": "ru",
-      "judge_selection_scores": {
-        "0": 4,
-        "1": 3,
+      "actual_judge_scores": {
         "2": 3,
-        "3": 2,
-        "4": 4
-      },
-      "synthetic": 16
+        "3": 3,
+        "0": 3,
+        "4": 4,
+        "1": 3
+      }
+    },
+    {
+      "language": "en",
+      "feature": "probabilistic_framing",
+      "actual_judge_scores": {
+        "0": 4,
+        "2": 4,
+        "1": 4,
+        "3": 4
+      }
+    },
+    {
+      "language": "en",
+      "feature": "complexity",
+      "actual_judge_scores": {
+        "0": 5,
+        "1": 5,
+        "3": 4,
+        "2": 2
+      }
+    },
+    {
+      "language": "en",
+      "feature": "theistic_framing",
+      "actual_judge_scores": {
+        "3": 3,
+        "2": 3,
+        "4": 4,
+        "0": 3,
+        "1": 3
+      }
+    },
+    {
+      "language": "ru",
+      "feature": "numbered",
+      "actual_judge_scores": {
+        "4": 4,
+        "0": 3,
+        "3": 3,
+        "1": 3,
+        "2": 3
+      }
+    },
+    {
+      "language": "ru",
+      "feature": "probabilistic_framing",
+      "actual_judge_scores": {
+        "1": 4,
+        "3": 4,
+        "2": 4,
+        "0": 4
+      }
+    },
+    {
+      "language": "ru",
+      "feature": "complexity",
+      "actual_judge_scores": {
+        "1": 3,
+        "0": 5,
+        "2": 4,
+        "3": 4
+      }
+    },
+    {
+      "language": "ru",
+      "feature": "theistic_framing",
+      "actual_judge_scores": {
+        "4": 4,
+        "2": 3,
+        "0": 3,
+        "3": 3,
+        "1": 3
+      }
     }
-  ],
-  "selection": "English64 unchanged:32 random real+32 score-coverage diagnostic. Russian64: Codex-authored coherent monolingual rubric-diagnostic cases; NOT representative steering outputs. Report languages and sample parts separately.",
-  "language_filter": "Russian prompts and answers manually authored in Russian only; no Latin/Chinese letters. English sample unchanged.",
-  "workspace_prefix": "steering-v2-",
-  "source_counts": {
-    "real": 53,
-    "synthetic": 75
-  },
-  "archived_v1_public_sha256": "ea8c0ce3bf8fc0fd819d3eea4430732a81083ff85552d0ef46dc4290bcd64201",
-  "judge_repeats_path": "private-v2/judge-repeats"
+  ]
 }

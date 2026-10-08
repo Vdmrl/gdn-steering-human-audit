@@ -27,7 +27,7 @@ Each account sees four datasets with 16 tasks each. Each dataset contains eight 
 
 The displayed score is the digit before the dash; small shortcut numbers in Argilla buttons are not scores. Full Russian explanations and the verbatim English Judge rubric are under **GUIDELINES**. No factual correctness, answer quality or content-preservation assessment is requested.
 
-Scales: Numbered **0–4**, Probability **0–4**, Technical **0–3**, theistic framing **0–4**. French and Chinese are not annotated. Texts are displayed in full, without rewriting or truncation.
+Scales: Numbered **0–4**, Probability **0–3**, Technical **0–3**, theistic framing **0–4**. French and Chinese are not annotated. Texts are displayed in full, without rewriting or truncation.
 
 Before the main sample, read [TRAINING.md](TRAINING.md) and discuss those separate examples. Do not discuss main-sample answers with your partner or open private owner files.
 
@@ -50,7 +50,7 @@ docker compose start
 
 ## Owner: final metrics
 
-Owner-only `data/private_manifest.jsonl` and `data/private-v2/judge-repeats/` must stay outside Git and outside annotators' folders. Keep independent exports in one combined JSONL, then run:
+Owner-only `data/private_manifest.jsonl` and `data/private-v3/judge-repeats/` must stay outside Git and outside annotators' folders. Keep independent exports in one combined JSONL, then run:
 
 ```powershell
 python scripts/calculate_metrics.py --input data/exports/annotations.jsonl
@@ -62,39 +62,10 @@ Primary Judge reference is fresh **run-0 after sample freezing**, not the candid
 
 ## Sample and limitations
 
-Sample **2.0** contains 128 unique answer/feature assignments, 64 English and 64 Russian; 256 expected human ratings. **53 real answers and 75 authored examples**. Each feature/language stratum contains 16 items:
+Sample **3.0** contains128 fully authored coherent diagnostic examples:64 English and64 Russian,16 per feature/language. All texts have complete endings, no generation loops, no mixed languages. This study measures Judge agreement on prepared rubric examples, not the quality or prevalence of traits in real steering generations.
 
-- English: eight random real answers per feature selected before candidate Judge calls, plus eight diagnostic answers chosen for actual Judge score coverage. The original English sample is unchanged.
-- Russian: sixteen coherent, entirely Russian rubric-diagnostic answers per feature, authored for this audit. Both scenario and answer are Russian; there are no English/Chinese insertions or generated loops. Their actual candidate scores cover every score level. These are not unmodified steering outputs and not a representative sample of model generations.
+Technical and uncertainty use the new concrete6.0.0-concrete-audit-review1 rubric. Probability now has0–3: absent, isolated weak hedge, generally mild uncertainty, explicit central uncertainty. Technical0–3: everyday language, one local specialized term/phrase, generally elevated language, dense demanding text. Numbered and theistic scales remain0–4. Full versioned definitions are in data/rubric.json and the vendored candidate resources; these are provisional scales undergoing human validation.
 
-Russian cases use four thematic prompt families per feature with different trait strengths. Sixteen answers are not sixteen independent situations; bootstrap keeps all answers from one prompt family together.
+The128 texts and assignments were frozen before Judge scoring. Intended author levels are private design strata, not human gold or fabricated Judge labels. Fresh run0 is the primary Judge reference; five repeats quantify repeatability. No cases are removed based on Judge scores. All cases belong to the diagnostic subset. Bootstrap groups the four topic families within each feature/language; language counterparts and template-family dependencies limit generalization. Do not interpret repeated wording variants as128 independent situations.
 
-All score values are covered in candidate-selection scores for each feature/language. These are **Judge-confirmed scores, not human ground truth**, and subsequent runs may differ. Diagnostic selection is score-conditioned and must be reported separately from the random real sample; pooled descriptive agreement is not a population accuracy estimate.
-
-Real English responses come from the earlier Qwen9B final cohort. Original English scenarios retain their historical instructions. Russian examples test how well people and Judge interpret the rubric on readable Russian, not how well Russian steering works. Report English random-real, English diagnostic and Russian curated results separately. This audit does not independently validate every later repaired cohort, other models, French or Chinese.
-
-The previous mixed-language sample and its scores are archived privately as version1; they are not reused as scores for rewritten Russian texts. Version2 has separate Argilla workspaces and fresh five-repeat scores for the frozen sample. Old datasets and any earlier annotations remain preserved.
-
-`sample_metadata.json` pins hashes and assignments. The private owner manifest additionally pins source paths/hashes/IDs, methods, selection scores and selection roles. Source generations are not included in Git. Do not regenerate a frozen public sample after annotation starts.
-
-## Owner: repeatability and supplementation
-
-The included `vendor/ready_judge` is a byte-identical copy of Judge **5.2.1-review1**. Scoring prompts/config remain unchanged: `deepseek/deepseek-v4.1-flash`, fixed CoreWeave routing, temperature 0, no reasoning, logprobs top 10. API keys are entered invisibly or read from the environment; never saved.
-
-```powershell
-python scripts/prepare_audit.py --run --repeats 5
-```
-
-This is an explicit **audit-only** paid action. It resumes only missing judgments using stable IDs and immutable inputs/config. Five independent requests per frozen item are sent with identical payloads. Report all-five exact stability, pairwise agreement, score ranges, available-expected-score SD/range and drift in normalized run means. This measures repeatability, not invariance to arbitrary paraphrases or agreement with humans. Missing logprob labels are not filled with zeros.
-
-The owner preparation pool in `data/private/candidates.jsonl` contains the already frozen real candidates; additional locally authored candidates are optional `extra-candidates.jsonl`. Candidate-selection responses and unsuccessful attempts are retained privately. An unavailable desired score causes visible preparation failure; it is never assigned by hand. This command does not authorize evaluation of the entire steering experiment bank.
-
-## Checks
-
-```powershell
-python -m venv .venv
-.venv/Scripts/python -m pip install -r requirements.txt
-.venv/Scripts/python -m unittest discover -s tests -v
-```
-
-Tests use fixtures/mocked objects and spend no API credits. Live smoke checks use a separate QA workspace and never submit ratings in study datasets. Setup is idempotent and refuses different data, labels or instructions on existing datasets.
+V2 datasets and eight existing human submissions were preserved separately before migration. New workspaces steering-v3-a/b replace earlier versions for annotators; old responses are never transferred to modified answers or new scales. Old raw scores remain private-archives/v2 and private-v2. Run the same setup to create the new version; changing an already annotated dataset in place is forbidden.

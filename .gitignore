@@ -4,6 +4,7 @@ __pycache__/
 *.pyc
 data/private/
 data/private-v2/
+data/private-v3/
 data/private-archives/
 data/training-private.jsonl
 data/private_manifest.jsonl

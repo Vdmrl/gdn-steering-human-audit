@@ -57,13 +57,28 @@ class AuditTests(unittest.TestCase):
         import re
         from audit_common import load_public
         rows, _, metadata = load_public()
-        if metadata['study_version'] != '2.0':
+        if metadata['study_version'] not in ('2.0', '3.0'):
             self.skipTest('Monolingual contract applies to sample2')
         russian = [r for r in rows if r['language'] == 'ru']
         self.assertEqual(len(russian), 64)
         for row in russian:
             self.assertIsNone(re.search(r'[A-Za-z\u4e00-\u9fff]', row['scenario'] + row['text']))
-        self.assertEqual(metadata['workspace_prefix'], 'steering-v2-')
+        self.assertEqual(metadata['workspace_prefix'], 'steering-v' + metadata['study_version'][0] + '-')
+
+    def test_curated_v3_is_complete_readable_and_new_scale_is_explicit(self):
+        from audit_common import load_public
+        import re
+        rows, rubric, metadata = load_public()
+        if metadata['study_version'] != '3.0':
+            self.skipTest('Curated contract applies to sample3')
+        self.assertEqual(metadata['source_counts'], {'real': 0, 'synthetic': 128})
+        self.assertEqual(rubric['features']['probabilistic_framing']['maximum'], 3)
+        for row in rows:
+            self.assertLess(len(row['text']), 1200)
+            self.assertTrue(row['text'].endswith('.'))
+            if row['language'] == 'en':
+                self.assertIsNone(re.search(r'[А-Яа-яЁё\u4e00-\u9fff]', row['scenario'] + row['text']))
+            self.assertNotIn('...', row['text'])
 
 if __name__ == '__main__':
     unittest.main()
