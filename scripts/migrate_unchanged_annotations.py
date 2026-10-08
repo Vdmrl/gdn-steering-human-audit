@@ -10,7 +10,7 @@ from audit_common import DATA, load_public, read_jsonl
 
 def main():
     rows, rubric, metadata = load_public()
-    archived = DATA / 'private-archives/v3'
+    archived = DATA / ('private-archives/v' + metadata['previous_study'].split('.')[0])
     old_rubric = json.loads((archived / 'rubric.json').read_text(encoding='utf-8'))
     old_rows = {r['item_id']: r for r in read_jsonl(archived / 'public_items.jsonl')}
     current = {r['item_id']: r for r in rows}

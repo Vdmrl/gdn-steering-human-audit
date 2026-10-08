@@ -1,6 +1,6 @@
 {
-  "study_version": "4.0",
-  "rubric_version": "6.1.0-unified-review1",
+  "study_version": "5.0",
+  "rubric_version": "6.2.0-religious-review1",
   "shuffle_seed": 20261009,
   "items": 128,
   "human_ratings_expected": 256,
@@ -27,20 +27,21 @@
     }
   },
   "public_sha256": "ac7e94649158f29a8ba33a7f222d604b859cae2169ebd9ffc3a34070579655f9",
-  "rubric_sha256": "a87cb14820f1eeead9a3e5e2f66321dd12a41b3882de11eb28dc7b19ee97d6b2",
-  "private_manifest_sha256": "f913134fa8ad37020e3ec6683563791a07b49065ee41bd68ba0dfe2f2350cb73",
-  "workspace_prefix": "steering-v4-",
-  "judge_repeats_path": "private-v4/judge-repeats",
+  "rubric_sha256": "dfb8cb0504ccebfb890d697a898e5ae5df510e75b17d651d642fc445a4c4b810",
+  "private_manifest_sha256": "bde8cf43706fef64f71339c575ab840a28201d3c74f6bef297d2dcb547e8b90d",
+  "workspace_prefix": "steering-v5-",
+  "judge_repeats_path": "private-v5/judge-repeats",
   "source_counts": {
     "real": 0,
     "synthetic": 128
   },
   "selection": "All128 Codex-authored coherent diagnostic cases; fixed before Judge scoring, no selection by Judge labels. Not representative steering outputs. Four topic clusters per feature/language; authored levels are design strata, not gold labels.",
-  "judge_resources": "vendor/ready_judge/resources/current_v6_1",
+  "judge_resources": "vendor/ready_judge/resources/current_v6_2",
   "archived_previous_public_sha256": "76715f15f381baf3842802dc3b7396e1206d0d1038eeadcfb3cacc700aad36c0",
   "bootstrap_clusters": "12 topic families; parallel EN/RU and shared Numbered/theistic scenarios clustered together",
-  "previous_study": "3.0",
+  "previous_study": "4.0",
   "annotation_migration": "Only identical answers/feature definitions can retain human responses; changed theistic labels must be newly annotated.",
+  "retained_submitted_human_ratings": 5,
   "coverage": [
     {
       "language": "en",
@@ -77,8 +78,7 @@
       "language": "en",
       "feature": "theistic_framing",
       "actual_judge_scores": {
-        "3": 7,
-        "2": 3,
+        "2": 10,
         "0": 3,
         "1": 3
       }
@@ -108,8 +108,8 @@
       "language": "ru",
       "feature": "complexity",
       "actual_judge_scores": {
-        "0": 3,
-        "1": 5,
+        "0": 4,
+        "1": 4,
         "2": 4,
         "3": 4
       }
@@ -118,12 +118,10 @@
       "language": "ru",
       "feature": "theistic_framing",
       "actual_judge_scores": {
-        "3": 7,
-        "0": 4,
-        "2": 2,
+        "2": 10,
+        "0": 3,
         "1": 3
       }
     }
-  ],
-  "retained_submitted_human_ratings": 5
+  ]
 }

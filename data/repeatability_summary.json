@@ -1,35 +1,35 @@
 {
-  "study_version": "4.0",
+  "study_version": "5.0",
   "features": {
     "all": {
       "expected_items": 128,
       "complete_five_repeat_items": 128,
-      "all_five_identical_pct": 96.875,
-      "pairwise_exact_pct": 98.75,
-      "mean_integer_range": 0.0390625,
-      "available_expected_mean_sd_pct": 0.5495836783391604,
-      "available_expected_mean_range_pct": 1.451374264529843,
+      "all_five_identical_pct": 97.65625,
+      "pairwise_exact_pct": 98.90625,
+      "mean_integer_range": 0.0234375,
+      "available_expected_mean_sd_pct": 0.5532283367097753,
+      "available_expected_mean_range_pct": 1.4453207199800946,
       "normalized_run_means_pct": {
-        "run-0": 53.645833333333336,
-        "run-1": 54.16666666666667,
-        "run-2": 54.16666666666667,
-        "run-3": 53.450520833333336,
-        "run-4": 54.16666666666667
+        "run-0": 56.25,
+        "run-1": 56.510416666666664,
+        "run-2": 56.510416666666664,
+        "run-3": 55.989583333333336,
+        "run-4": 56.25
       }
     },
     "numbered": {
       "expected_items": 32,
       "complete_five_repeat_items": 32,
-      "all_five_identical_pct": 96.875,
-      "pairwise_exact_pct": 98.75,
-      "mean_integer_range": 0.03125,
-      "available_expected_mean_sd_pct": 0.5926201978799177,
-      "available_expected_mean_range_pct": 1.6185661554386432,
+      "all_five_identical_pct": 100,
+      "pairwise_exact_pct": 100,
+      "mean_integer_range": 0,
+      "available_expected_mean_sd_pct": 0.44125990681051513,
+      "available_expected_mean_range_pct": 1.188803162242283,
       "normalized_run_means_pct": {
         "run-0": 53.125,
         "run-1": 53.125,
         "run-2": 53.125,
-        "run-3": 52.34375,
+        "run-3": 53.125,
         "run-4": 53.125
       }
     },
@@ -39,8 +39,8 @@
       "all_five_identical_pct": 100,
       "pairwise_exact_pct": 100,
       "mean_integer_range": 0,
-      "available_expected_mean_sd_pct": 0.0734481151462696,
-      "available_expected_mean_range_pct": 0.178781369222273,
+      "available_expected_mean_sd_pct": 0.07839360017030435,
+      "available_expected_mean_range_pct": 0.21701502133565176,
       "normalized_run_means_pct": {
         "run-0": 50.0,
         "run-1": 50.0,
@@ -52,38 +52,38 @@
     "complexity": {
       "expected_items": 32,
       "complete_five_repeat_items": 32,
-      "all_five_identical_pct": 93.75,
-      "pairwise_exact_pct": 97.5,
-      "mean_integer_range": 0.0625,
-      "available_expected_mean_sd_pct": 1.0117095140802512,
-      "available_expected_mean_range_pct": 2.6986993980565996,
+      "all_five_identical_pct": 90.625,
+      "pairwise_exact_pct": 95.625,
+      "mean_integer_range": 0.09375,
+      "available_expected_mean_sd_pct": 1.6888500548888448,
+      "available_expected_mean_range_pct": 4.363310616781158,
       "normalized_run_means_pct": {
-        "run-0": 51.04166666666667,
+        "run-0": 50.0,
         "run-1": 51.04166666666667,
         "run-2": 51.04166666666667,
         "run-3": 48.958333333333336,
-        "run-4": 51.04166666666667
+        "run-4": 50.0
       }
     },
     "theistic_framing": {
       "expected_items": 32,
       "complete_five_repeat_items": 32,
-      "all_five_identical_pct": 96.875,
-      "pairwise_exact_pct": 98.75,
-      "mean_integer_range": 0.0625,
-      "available_expected_mean_sd_pct": 0.5205568862502034,
-      "available_expected_mean_range_pct": 1.3094501354018568,
+      "all_five_identical_pct": 100,
+      "pairwise_exact_pct": 100,
+      "mean_integer_range": 0,
+      "available_expected_mean_sd_pct": 0.004409784969437132,
+      "available_expected_mean_range_pct": 0.01215407956128501,
       "normalized_run_means_pct": {
-        "run-0": 60.41666666666667,
-        "run-1": 62.5,
-        "run-2": 62.5,
-        "run-3": 62.5,
-        "run-4": 62.5
+        "run-0": 71.875,
+        "run-1": 71.875,
+        "run-2": 71.875,
+        "run-3": 71.875,
+        "run-4": 71.875
       }
     }
   },
   "accepted_scores": 640,
-  "provider_responses": 641,
-  "cost_usd": 0.029599910000000017,
+  "provider_responses": 640,
+  "cost_usd": 0.028241240000000035,
   "interpretation": "Repeatability on authored diagnostic examples; not human agreement or real steering performance."
 }
