@@ -22,7 +22,8 @@ def main():
             continue
         row = current[response['item_id']]
         feature = row['feature']
-        assert old_rows[row['item_id']] == row, 'Changed answer must not inherit labels'
+        if old_rows[row['item_id']] != row:
+            continue
         if old_rubric['features'][feature] != rubric['features'][feature]:
             continue
         dataset = client.datasets(name=feature, workspace=metadata['workspace_prefix'] + row['group'].lower())

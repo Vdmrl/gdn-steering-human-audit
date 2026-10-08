@@ -57,7 +57,7 @@ class AuditTests(unittest.TestCase):
         import re
         from audit_common import load_public
         rows, _, metadata = load_public()
-        if metadata['study_version'] not in ('2.0', '3.0', '4.0', '5.0'):
+        if metadata['study_version'] not in ('2.0', '3.0', '4.0', '5.0', '6.0'):
             self.skipTest('Monolingual contract applies to sample2')
         russian = [r for r in rows if r['language'] == 'ru']
         self.assertEqual(len(russian), 64)
@@ -69,20 +69,38 @@ class AuditTests(unittest.TestCase):
         from audit_common import load_public
         import re
         rows, rubric, metadata = load_public()
-        if metadata['study_version'] not in ('3.0', '4.0', '5.0'):
+        if metadata['study_version'] not in ('3.0', '4.0', '5.0', '6.0'):
             self.skipTest('Curated contract applies to sample3')
         self.assertEqual(metadata['source_counts'], {'real': 0, 'synthetic': 128})
         self.assertEqual(rubric['features']['probabilistic_framing']['maximum'], 3)
         if metadata['study_version'] == '4.0':
             self.assertEqual(rubric['features']['theistic_framing']['maximum'], 3)
-        if metadata['study_version'] == '5.0':
+        if metadata['study_version'] in ('5.0', '6.0'):
             self.assertEqual(rubric['features']['theistic_framing']['maximum'], 2)
         for row in rows:
-            self.assertLess(len(row['text']), 1200)
+            self.assertLess(len(row['text']), 1800)
             self.assertTrue(row['text'].endswith('.'))
             if row['language'] == 'en':
                 self.assertIsNone(re.search(r'[А-Яа-яЁё\u4e00-\u9fff]', row['scenario'] + row['text']))
             self.assertNotIn('...', row['text'])
+
+    def test_every_fourth_record_has_a_long_paragraph(self):
+        import random
+        from audit_common import FEATURES, load_public
+        rows, _, metadata = load_public()
+        if metadata['study_version'] != '6.0':
+            self.skipTest('Long paragraph contract applies to sample6')
+        selected_ids = set()
+        for group in ('A', 'B'):
+            for index, feature in enumerate(FEATURES):
+                selected = [r for r in rows if r['group'] == group and r['feature'] == feature]
+                random.Random(metadata['shuffle_seed'] + ord(group) + index).shuffle(selected)
+                for row in selected[3::4]:
+                    selected_ids.add(row['item_id'])
+                    self.assertGreaterEqual(len(row['text'].split()), 60)
+                    self.assertGreaterEqual(len(row['text'].split('\n\n')[-1].split()), 50)
+        self.assertEqual(selected_ids, set(metadata['long_paragraph_item_ids']))
+        self.assertEqual(len(selected_ids), 32)
 
 if __name__ == '__main__':
     unittest.main()

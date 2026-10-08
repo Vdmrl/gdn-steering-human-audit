@@ -1,5 +1,5 @@
 {
-  "study_version": "5.0",
+  "study_version": "6.0",
   "rubric_version": "6.2.0-religious-review1",
   "shuffle_seed": 20261009,
   "items": 128,
@@ -26,11 +26,11 @@
       "items": 64
     }
   },
-  "public_sha256": "ac7e94649158f29a8ba33a7f222d604b859cae2169ebd9ffc3a34070579655f9",
+  "public_sha256": "54d580a7053eace8e84a644275dfffc413648eb10099516f2114abf2f408207b",
   "rubric_sha256": "dfb8cb0504ccebfb890d697a898e5ae5df510e75b17d651d642fc445a4c4b810",
-  "private_manifest_sha256": "bde8cf43706fef64f71339c575ab840a28201d3c74f6bef297d2dcb547e8b90d",
-  "workspace_prefix": "steering-v5-",
-  "judge_repeats_path": "private-v5/judge-repeats",
+  "private_manifest_sha256": "d3663f48bd8450ff52b5a166e76e43bf5fef407581a1da9fdb590dd97b063eba",
+  "workspace_prefix": "steering-v6-",
+  "judge_repeats_path": "private-v6/judge-repeats",
   "source_counts": {
     "real": 0,
     "synthetic": 128
@@ -39,9 +39,44 @@
   "judge_resources": "vendor/ready_judge/resources/current_v6_2",
   "archived_previous_public_sha256": "76715f15f381baf3842802dc3b7396e1206d0d1038eeadcfb3cacc700aad36c0",
   "bootstrap_clusters": "12 topic families; parallel EN/RU and shared Numbered/theistic scenarios clustered together",
-  "previous_study": "4.0",
-  "annotation_migration": "Only identical answers/feature definitions can retain human responses; changed theistic labels must be newly annotated.",
-  "retained_submitted_human_ratings": 5,
+  "previous_study": "5.0",
+  "annotation_migration": "Only byte-identical answers with unchanged feature definitions retain submitted human responses.",
+  "retained_submitted_human_ratings": 4,
+  "long_paragraph_item_ids": [
+    "cec05eb271743f2947de9199",
+    "c3ed9d59cfda78a9d4ed8f19",
+    "037c84a689d84681c1a2083c",
+    "db9ed8b13a1a2f2a9f55d078",
+    "9d7fd10f13bf2972e2f62f46",
+    "c483b313204de0b5881eaa8e",
+    "bfb41f2fe093caec3a5a500e",
+    "77bcab438a893dd879a64c9a",
+    "10ac3b6aeae47eea7146a319",
+    "2d87f84702e5afbce7cff6dd",
+    "1532651612fcbb0f48d4c809",
+    "d7dc67402df3523f9f944dd1",
+    "116506ec4318b2e63ec2e540",
+    "cae00dc19a830f18e0c8e208",
+    "b839171439e2f311faa2165e",
+    "36502f9e87a4c2df9716030d",
+    "438d90281b330a133d2d372a",
+    "fa4d0caec098fb8865546643",
+    "ac72dd551d00eb395a89608e",
+    "d08ffbd075a4cf265815ca76",
+    "d7c8a3f0caedd6841799f552",
+    "fdf3e0b71dce28df94b5af93",
+    "75e6ea4574af5f7b293e9b3c",
+    "db91df44e92059d6bbd91dba",
+    "66cc06980c19568c83d53d95",
+    "62f751e285f23d309eb863af",
+    "8bbf1334175e1b2720e3b062",
+    "fc89210e72e60054c5c44040",
+    "8776fe4710a3f344ef3e77ad",
+    "747ae3f2e486336356f0f2a9",
+    "b62700ad2ed7a4b656439481",
+    "fb8bb27109dc6f2717d5c7a1"
+  ],
+  "long_paragraph_selection": "Every fourth record in each deterministically shuffled group/feature dataset; frozen before Judge scoring.",
   "coverage": [
     {
       "language": "en",
@@ -68,10 +103,10 @@
       "language": "en",
       "feature": "complexity",
       "actual_judge_scores": {
-        "0": 4,
+        "0": 5,
         "2": 4,
         "3": 4,
-        "1": 4
+        "1": 3
       }
     },
     {
@@ -87,11 +122,11 @@
       "language": "ru",
       "feature": "numbered",
       "actual_judge_scores": {
-        "4": 4,
+        "4": 6,
         "0": 3,
-        "3": 3,
         "1": 3,
-        "2": 3
+        "2": 3,
+        "3": 1
       }
     },
     {
@@ -109,8 +144,8 @@
       "feature": "complexity",
       "actual_judge_scores": {
         "0": 4,
-        "1": 4,
-        "2": 4,
+        "1": 5,
+        "2": 3,
         "3": 4
       }
     },
