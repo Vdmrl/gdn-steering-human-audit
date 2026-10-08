@@ -67,7 +67,7 @@ def bootstrap(entries, repetitions, seed):
         ci[key] = [series[int(.025 * (len(series) - 1))], series[int(.975 * (len(series) - 1))]]
     return {'clusters': len(keys), 'resamples': repetitions, 'ci95': ci}
 
-def load_repeats(directory):
+def load_repeats(directory, rubric_version='5.2.1-review1'):
     result = defaultdict(dict)
     identities = {}
     for run in sorted(Path(directory).glob('run-*')):
@@ -80,7 +80,7 @@ def load_repeats(directory):
             digest = hashlib.sha256(json.dumps(inputs, sort_keys=True, ensure_ascii=False).encode()).hexdigest()
             assert identity['input_sha256'] == digest, 'Repeat input hash differs'
             assert identity['features'] == [feature]
-            assert identity['rubric']['rubric_version'] == '5.2.1-review1'
+            assert identity['rubric']['rubric_version'] == rubric_version, 'Repeated rubric differs from human sample'
             assert feature not in identities or identities[feature] == identity, 'Repeat protocol differs'
             identities[feature] = identity
             expected_ids = {r['answer_id'] for r in inputs}
@@ -145,9 +145,9 @@ def analyze(annotations, manifest, repeats, public_hash, rubric, resamples=2000)
     report = {'study': 'steering-human-audit-1.0', 'submitted_by_user': {u: counts[u] for u in USERS},
         'expected_human_ratings': 256, 'submitted_human_ratings': sum(counts.values()),
         'complete_human_pairs': sum(len(users) == 2 for users in labels.values()),
-        'primary_judge_run': 'run-0 (fresh evaluation after selection; candidate-selection scores are not the validation reference)',
+        'primary_judge_run': 'run-0 (fresh evaluation after sample freezing)',
         'repeatability': repeatability(manifest, repeats), 'agreement': {},
-        'interpretation': 'Report representative real and score-selected diagnostic sets separately. No success thresholds. Normalized scores are ordinal strength, not probabilities. CI resamples whole source prompt clusters; two raters are not two independent items. Logprob expectation uses available labels and is secondary.'}
+        'interpretation': 'Report representative and authored diagnostic sets separately when present. Authored diagnostics do not certify real steering performance. No success thresholds. Normalized scores are ordinal strength, not probabilities. CI resamples whole topic clusters; two raters are not two independent items. Logprob expectation uses available labels and is secondary.'}
     views = {'all_descriptive': entries}
     for part in ('representative', 'diagnostic'):
         views[part] = [e for e in entries if e['sample_part'] == part]
@@ -184,7 +184,7 @@ def main():
         actual = read_jsonl(Path(args.judge_repeats).parent / ('final-' + feature + '.jsonl'))
         assert actual == frozen, 'Repeated Judge input differs from frozen human sample'
     annotations = read_jsonl(args.input) if Path(args.input).exists() else []
-    report = analyze(annotations, manifest, load_repeats(args.judge_repeats), metadata['public_sha256'], rubric, args.bootstrap)
+    report = analyze(annotations, manifest, load_repeats(args.judge_repeats, rubric['rubric_version']), metadata['public_sha256'], rubric, args.bootstrap)
     report['sample_version'] = metadata['study_version']
     report['study'] = 'steering-human-audit-' + metadata['study_version']
     report['sample_selection'] = metadata['selection']

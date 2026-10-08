@@ -148,7 +148,8 @@ def main():
             input_path = repeat_root.parent / f'final-{feature}.jsonl'
             selected = [r for r in private if r['feature'] == feature]
             write_jsonl(input_path, [{'prompt_id': r['prompt_id'], 'answer_id': r['item_id'], 'scenario': r['scenario'], 'text': r['text']} for r in selected])
-            progress = evaluate(input_path, repeat_root / f'run-{repeat}' / feature, [feature], run=args.run, workers=8, secret=secret)
+            resources = Path(__file__).resolve().parents[1] / metadata['judge_resources'] if metadata.get('judge_resources') else None
+            progress = evaluate(input_path, repeat_root / f'run-{repeat}' / feature, [feature], run=args.run, workers=8, secret=secret, resources=resources)
             print('REPEAT', repeat, feature, progress, flush=True)
             if args.run and not progress['complete']:
                 raise RuntimeError('Missing final audit scores; safely resume this command')

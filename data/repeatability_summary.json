@@ -1,95 +1,89 @@
 {
-  "sample_version": "2.0",
-  "rubric_version": "5.2.1-review1",
-  "items": 128,
-  "repeats": 5,
-  "human_labels_collected": 0,
-  "repeatability": {
+  "study_version": "7.0",
+  "features": {
     "all": {
       "expected_items": 128,
       "complete_five_repeat_items": 128,
-      "all_five_identical_pct": 90.625,
-      "pairwise_exact_pct": 95.78125,
-      "mean_integer_range": 0.09375,
-      "available_expected_mean_sd_pct": 0.7706905777010943,
-      "available_expected_mean_range_pct": 2.0949408396687312,
+      "all_five_identical_pct": 96.875,
+      "pairwise_exact_pct": 98.4375,
+      "mean_integer_range": 0.03125,
+      "available_expected_mean_sd_pct": 0.49967231415986574,
+      "available_expected_mean_range_pct": 1.3457292720733265,
       "normalized_run_means_pct": {
-        "run-0": 33.723958333333336,
-        "run-1": 33.7890625,
-        "run-2": 33.463541666666664,
-        "run-3": 33.723958333333336,
-        "run-4": 33.658854166666664
+        "run-0": 56.25,
+        "run-1": 56.4453125,
+        "run-2": 56.25,
+        "run-3": 56.25,
+        "run-4": 56.510416666666664
       }
     },
     "numbered": {
       "expected_items": 32,
       "complete_five_repeat_items": 32,
-      "all_five_identical_pct": 100,
-      "pairwise_exact_pct": 100,
-      "mean_integer_range": 0,
-      "available_expected_mean_sd_pct": 0.2496221643184684,
-      "available_expected_mean_range_pct": 0.6620668321762558,
+      "all_five_identical_pct": 96.875,
+      "pairwise_exact_pct": 98.75,
+      "mean_integer_range": 0.03125,
+      "available_expected_mean_sd_pct": 0.442627109265915,
+      "available_expected_mean_range_pct": 1.1998144361221403,
       "normalized_run_means_pct": {
-        "run-0": 37.5,
-        "run-1": 37.5,
-        "run-2": 37.5,
-        "run-3": 37.5,
-        "run-4": 37.5
+        "run-0": 53.125,
+        "run-1": 53.90625,
+        "run-2": 53.125,
+        "run-3": 53.125,
+        "run-4": 53.125
       }
     },
     "probabilistic_framing": {
       "expected_items": 32,
       "complete_five_repeat_items": 32,
-      "all_five_identical_pct": 84.375,
-      "pairwise_exact_pct": 93.75,
-      "mean_integer_range": 0.15625,
-      "available_expected_mean_sd_pct": 1.0496590468960825,
-      "available_expected_mean_range_pct": 2.9045550041255734,
+      "all_five_identical_pct": 100,
+      "pairwise_exact_pct": 100,
+      "mean_integer_range": 0,
+      "available_expected_mean_sd_pct": 0.12613395470810893,
+      "available_expected_mean_range_pct": 0.3386350965332116,
       "normalized_run_means_pct": {
-        "run-0": 32.03125,
-        "run-1": 30.46875,
-        "run-2": 32.03125,
-        "run-3": 32.03125,
-        "run-4": 32.8125
+        "run-0": 50.0,
+        "run-1": 50.0,
+        "run-2": 50.0,
+        "run-3": 50.0,
+        "run-4": 50.0
       }
     },
     "complexity": {
       "expected_items": 32,
       "complete_five_repeat_items": 32,
-      "all_five_identical_pct": 81.25,
-      "pairwise_exact_pct": 90.625,
-      "mean_integer_range": 0.1875,
-      "available_expected_mean_sd_pct": 1.39128447339049,
-      "available_expected_mean_range_pct": 3.7914474696428644,
+      "all_five_identical_pct": 90.625,
+      "pairwise_exact_pct": 95.0,
+      "mean_integer_range": 0.09375,
+      "available_expected_mean_sd_pct": 1.425387062760887,
+      "available_expected_mean_range_pct": 3.831992458147624,
       "normalized_run_means_pct": {
-        "run-0": 27.083333333333336,
-        "run-1": 28.125,
-        "run-2": 26.041666666666668,
-        "run-3": 27.083333333333336,
-        "run-4": 26.041666666666668
+        "run-0": 50.0,
+        "run-1": 50.0,
+        "run-2": 50.0,
+        "run-3": 50.0,
+        "run-4": 51.04166666666667
       }
     },
     "theistic_framing": {
       "expected_items": 32,
       "complete_five_repeat_items": 32,
-      "all_five_identical_pct": 96.875,
-      "pairwise_exact_pct": 98.75,
-      "mean_integer_range": 0.03125,
-      "available_expected_mean_sd_pct": 0.39219662619933615,
-      "available_expected_mean_range_pct": 1.0216940527302303,
+      "all_five_identical_pct": 100,
+      "pairwise_exact_pct": 100,
+      "mean_integer_range": 0,
+      "available_expected_mean_sd_pct": 0.004541129904552234,
+      "available_expected_mean_range_pct": 0.012475097490330522,
       "normalized_run_means_pct": {
-        "run-0": 38.28125,
-        "run-1": 39.0625,
-        "run-2": 38.28125,
-        "run-3": 38.28125,
-        "run-4": 38.28125
+        "run-0": 71.875,
+        "run-1": 71.875,
+        "run-2": 71.875,
+        "run-3": 71.875,
+        "run-4": 71.875
       }
     }
   },
-  "audit_only_provider_usage": {
-    "unique_requests": 705,
-    "reported_cost_usd": 0.05177267999999997,
-    "tokens": 532247
-  },
-  "previous_sample": "Archived v1; do not mix scores or repeatability"
+  "accepted_scores": 640,
+  "provider_responses": 641,
+  "cost_usd": 0.03016888000000003,
+  "interpretation": "Repeatability on authored diagnostic examples; not human agreement or real steering performance."
 }

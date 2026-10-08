@@ -31,13 +31,14 @@ def validate_public(rows, rubric):
         for feature in FEATURES:
             for language in ('en', 'ru'):
                 assert sum(r['group'] == group and r['feature'] == feature and r['language'] == language for r in rows) == 8
-    assert rubric['rubric_version'] == '5.2.1-review1'
+    assert rubric['rubric_version'] in ('5.2.1-review1', '6.0.0-concrete-audit-review1', '6.1.0-unified-review1', '6.2.0-religious-review1', '6.3.0-multilingual-complexity-review1')
 
 def load_public():
     rows = read_jsonl(DATA / 'public_items.jsonl')
     rubric = json.loads((DATA / 'rubric.json').read_text(encoding='utf-8'))
     validate_public(rows, rubric)
     metadata = json.loads((DATA / 'sample_metadata.json').read_text(encoding='utf-8'))
+    assert metadata['rubric_version'] == rubric['rubric_version'], 'Rubric version differs from frozen sample'
     assert sha(DATA / 'public_items.jsonl') == metadata['public_sha256']
     assert sha(DATA / 'rubric.json') == metadata['rubric_sha256']
     return rows, rubric, metadata

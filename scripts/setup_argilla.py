@@ -29,7 +29,16 @@ SHORT_LABELS = {
 def guide_and_labels(feature, definition, russian_labels):
     anchors = definition['anchors']
     assert set(russian_labels[feature]) == set(anchors)
-    labels = {score: score + ' — ' + SHORT_LABELS[feature][int(score)] for score in anchors}
+    short_labels = SHORT_LABELS[feature]
+    if feature == 'probabilistic_framing' and definition['maximum'] == 3:
+        short_labels = ['Нет неуверенности', 'Одна слабая вводная конструкция', 'Общая небольшая неуверенность', 'Явная центральная неуверенность']
+    if feature == 'complexity' and 'general adult reader' in definition['definition']:
+        short_labels = ['Простая лексика', 'Один сложный термин / локальная фраза', 'Общее усложнение языка', 'Очень сложный текст']
+    if feature == 'theistic_framing' and definition['maximum'] == 3:
+        short_labels = ['Нет Бога / религиозной предпосылки', 'Упоминание Бога', 'Религиозная вставка', 'Явно религиозное обрамление']
+    if feature == 'theistic_framing' and definition['maximum'] == 2:
+        short_labels = ['Нет религиозного содержания', 'Только упоминание Бога', 'Религиозная вставка или текст']
+    labels = {score: score + ' — ' + short_labels[int(score)] for score in anchors}
     guide = GUIDELINES + '\nБаллы — цифры перед тире (0–' + str(definition['maximum']) + '); маленькие номера кнопок — горячие клавиши, не баллы.\n\nПолные значения баллов:\n' + '\n\n'.join(score + ': ' + russian_labels[feature][score] for score in anchors) + '\n\nSource rubric (identical to Judge):\n' + definition['definition'] + '\n' + '\n'.join('- ' + s for s in definition['exclusions']) + '\n\n' + '\n'.join(score + ': ' + anchor for score, anchor in anchors.items())
     return guide, labels
 
@@ -84,13 +93,16 @@ def main():
                 assert actual_labels == labels, 'Existing scale differs from frozen rubric'
                 assert dataset.settings.guidelines == guide, 'Existing instructions differ from frozen rubric'
             datasets.append({'workspace': workspace_name, 'dataset': feature, 'records': len(selected)})
-    if metadata.get('workspace_prefix', 'steering-') != 'steering-':
-        for group in ('A', 'B'):
-            previous = client.workspaces('steering-' + group.lower())
-            if previous is not None:
-                for user in list(previous.users):
-                    if user.username in USERS and USERS[user.username][1] == group:
-                        user.remove_from_workspace(previous)
+    if metadata.get('workspace_prefix'):
+        for prefix in ('steering-', 'steering-v2-', 'steering-v3-', 'steering-v4-', 'steering-v5-', 'steering-v6-', 'steering-archive-v1-'):
+            if prefix == metadata['workspace_prefix']:
+                continue
+            for group in ('A', 'B'):
+                previous = client.workspaces(prefix + group.lower())
+                if previous is not None:
+                    for user in list(previous.users):
+                        if user.username in USERS and USERS[user.username][1] == group:
+                            user.remove_from_workspace(previous)
     (DATA / 'argilla_dataset.json').write_text(json.dumps({'public_sha256': metadata['public_sha256'], 'datasets': datasets}, ensure_ascii=False, indent=2), encoding='utf-8')
     print('Ready: vova / stepa / slava / petya, 64 records each, paired blind annotation.')
 

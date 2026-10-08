@@ -1,4 +1,4 @@
 * text eol=lf
-data/public_items.jsonl -text
-data/rubric.json -text
-vendor/ready_judge/** -text
+data/public_items.jsonl -text whitespace=cr-at-eol
+data/rubric.json -text whitespace=cr-at-eol
+vendor/ready_judge/** -text whitespace=cr-at-eol
