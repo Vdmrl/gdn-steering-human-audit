@@ -1,35 +1,35 @@
 {
-  "study_version": "3.0",
+  "study_version": "4.0",
   "features": {
     "all": {
       "expected_items": 128,
       "complete_five_repeat_items": 128,
-      "all_five_identical_pct": 92.1875,
-      "pairwise_exact_pct": 96.71875,
-      "mean_integer_range": 0.109375,
-      "available_expected_mean_sd_pct": 1.2190510230176834,
-      "available_expected_mean_range_pct": 3.1579927860828385,
+      "all_five_identical_pct": 96.875,
+      "pairwise_exact_pct": 98.75,
+      "mean_integer_range": 0.0390625,
+      "available_expected_mean_sd_pct": 0.5495836783391604,
+      "available_expected_mean_range_pct": 1.451374264529843,
       "normalized_run_means_pct": {
-        "run-0": 50.520833333333336,
-        "run-1": 52.734375,
-        "run-2": 51.822916666666664,
-        "run-3": 51.5625,
-        "run-4": 52.083333333333336
+        "run-0": 53.645833333333336,
+        "run-1": 54.16666666666667,
+        "run-2": 54.16666666666667,
+        "run-3": 53.450520833333336,
+        "run-4": 54.16666666666667
       }
     },
     "numbered": {
       "expected_items": 32,
       "complete_five_repeat_items": 32,
-      "all_five_identical_pct": 93.75,
-      "pairwise_exact_pct": 97.5,
-      "mean_integer_range": 0.1875,
-      "available_expected_mean_sd_pct": 1.88724447377844,
-      "available_expected_mean_range_pct": 4.7892363787103776,
+      "all_five_identical_pct": 96.875,
+      "pairwise_exact_pct": 98.75,
+      "mean_integer_range": 0.03125,
+      "available_expected_mean_sd_pct": 0.5926201978799177,
+      "available_expected_mean_range_pct": 1.6185661554386432,
       "normalized_run_means_pct": {
         "run-0": 53.125,
-        "run-1": 57.8125,
+        "run-1": 53.125,
         "run-2": 53.125,
-        "run-3": 53.125,
+        "run-3": 52.34375,
         "run-4": 53.125
       }
     },
@@ -39,8 +39,8 @@
       "all_five_identical_pct": 100,
       "pairwise_exact_pct": 100,
       "mean_integer_range": 0,
-      "available_expected_mean_sd_pct": 0.12166614997742278,
-      "available_expected_mean_range_pct": 0.32244761901951663,
+      "available_expected_mean_sd_pct": 0.0734481151462696,
+      "available_expected_mean_range_pct": 0.178781369222273,
       "normalized_run_means_pct": {
         "run-0": 50.0,
         "run-1": 50.0,
@@ -52,38 +52,38 @@
     "complexity": {
       "expected_items": 32,
       "complete_five_repeat_items": 32,
-      "all_five_identical_pct": 75.0,
-      "pairwise_exact_pct": 89.375,
-      "mean_integer_range": 0.25,
-      "available_expected_mean_sd_pct": 2.7701409432487965,
-      "available_expected_mean_range_pct": 7.266336664025967,
+      "all_five_identical_pct": 93.75,
+      "pairwise_exact_pct": 97.5,
+      "mean_integer_range": 0.0625,
+      "available_expected_mean_sd_pct": 1.0117095140802512,
+      "available_expected_mean_range_pct": 2.6986993980565996,
       "normalized_run_means_pct": {
-        "run-0": 45.833333333333336,
-        "run-1": 50.0,
+        "run-0": 51.04166666666667,
+        "run-1": 51.04166666666667,
         "run-2": 51.04166666666667,
-        "run-3": 50.0,
-        "run-4": 52.083333333333336
+        "run-3": 48.958333333333336,
+        "run-4": 51.04166666666667
       }
     },
     "theistic_framing": {
       "expected_items": 32,
       "complete_five_repeat_items": 32,
-      "all_five_identical_pct": 100,
-      "pairwise_exact_pct": 100,
-      "mean_integer_range": 0,
-      "available_expected_mean_sd_pct": 0.09715252506607466,
-      "available_expected_mean_range_pct": 0.253950482575493,
+      "all_five_identical_pct": 96.875,
+      "pairwise_exact_pct": 98.75,
+      "mean_integer_range": 0.0625,
+      "available_expected_mean_sd_pct": 0.5205568862502034,
+      "available_expected_mean_range_pct": 1.3094501354018568,
       "normalized_run_means_pct": {
-        "run-0": 53.125,
-        "run-1": 53.125,
-        "run-2": 53.125,
-        "run-3": 53.125,
-        "run-4": 53.125
+        "run-0": 60.41666666666667,
+        "run-1": 62.5,
+        "run-2": 62.5,
+        "run-3": 62.5,
+        "run-4": 62.5
       }
     }
   },
   "accepted_scores": 640,
-  "provider_responses": 640,
-  "cost_usd": 0.036082520000000035,
+  "provider_responses": 641,
+  "cost_usd": 0.029599910000000017,
   "interpretation": "Repeatability on authored diagnostic examples; not human agreement or real steering performance."
 }

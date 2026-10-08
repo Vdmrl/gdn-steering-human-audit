@@ -57,7 +57,7 @@ class AuditTests(unittest.TestCase):
         import re
         from audit_common import load_public
         rows, _, metadata = load_public()
-        if metadata['study_version'] not in ('2.0', '3.0'):
+        if metadata['study_version'] not in ('2.0', '3.0', '4.0'):
             self.skipTest('Monolingual contract applies to sample2')
         russian = [r for r in rows if r['language'] == 'ru']
         self.assertEqual(len(russian), 64)
@@ -69,10 +69,12 @@ class AuditTests(unittest.TestCase):
         from audit_common import load_public
         import re
         rows, rubric, metadata = load_public()
-        if metadata['study_version'] != '3.0':
+        if metadata['study_version'] not in ('3.0', '4.0'):
             self.skipTest('Curated contract applies to sample3')
         self.assertEqual(metadata['source_counts'], {'real': 0, 'synthetic': 128})
         self.assertEqual(rubric['features']['probabilistic_framing']['maximum'], 3)
+        if metadata['study_version'] == '4.0':
+            self.assertEqual(rubric['features']['theistic_framing']['maximum'], 3)
         for row in rows:
             self.assertLess(len(row['text']), 1200)
             self.assertTrue(row['text'].endswith('.'))

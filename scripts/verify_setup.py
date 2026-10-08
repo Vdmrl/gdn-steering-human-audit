@@ -22,8 +22,8 @@ def main():
             assert actual == expected and len(actual) == 16
             labels = {o['value'] for o in dataset.settings.questions['trait_score'].api_model().settings.options}
             assert labels == set(rubric['features'][feature]['anchors'])
-            if group == 'A' and feature == 'probabilistic_framing':
-                print('ANNOTATION_URL http://localhost:6900/dataset/' + str(dataset.id) + '/annotation-mode?page=1&status=pending')
+            if group == 'A' and feature in ('probabilistic_framing', 'theistic_framing'):
+                print(feature + ' ANNOTATION_URL http://localhost:6900/dataset/' + str(dataset.id) + '/annotation-mode?page=1&status=pending')
     print('Verified128 uploaded texts, blind fields, all scales and paired workspace access.')
 
 

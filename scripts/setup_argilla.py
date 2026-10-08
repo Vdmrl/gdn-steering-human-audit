@@ -34,6 +34,8 @@ def guide_and_labels(feature, definition, russian_labels):
         short_labels = ['Нет неуверенности', 'Одна слабая вводная конструкция', 'Общая небольшая неуверенность', 'Явная центральная неуверенность']
     if feature == 'complexity' and 'general adult reader' in definition['definition']:
         short_labels = ['Простая лексика', 'Один сложный термин / локальная фраза', 'Общее усложнение языка', 'Очень сложный текст']
+    if feature == 'theistic_framing' and definition['maximum'] == 3:
+        short_labels = ['Нет Бога / религиозной предпосылки', 'Упоминание Бога', 'Религиозная вставка', 'Явно религиозное обрамление']
     labels = {score: score + ' — ' + short_labels[int(score)] for score in anchors}
     guide = GUIDELINES + '\nБаллы — цифры перед тире (0–' + str(definition['maximum']) + '); маленькие номера кнопок — горячие клавиши, не баллы.\n\nПолные значения баллов:\n' + '\n\n'.join(score + ': ' + russian_labels[feature][score] for score in anchors) + '\n\nSource rubric (identical to Judge):\n' + definition['definition'] + '\n' + '\n'.join('- ' + s for s in definition['exclusions']) + '\n\n' + '\n'.join(score + ': ' + anchor for score, anchor in anchors.items())
     return guide, labels
@@ -90,7 +92,7 @@ def main():
                 assert dataset.settings.guidelines == guide, 'Existing instructions differ from frozen rubric'
             datasets.append({'workspace': workspace_name, 'dataset': feature, 'records': len(selected)})
     if metadata.get('workspace_prefix', 'steering-') != 'steering-':
-        for prefix in ('steering-', 'steering-v2-'):
+        for prefix in ('steering-', 'steering-v2-', 'steering-v3-'):
             if prefix == metadata['workspace_prefix']:
                 continue
             for group in ('A', 'B'):
